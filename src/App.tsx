@@ -1,12 +1,76 @@
+import Post from './components/Post';
+
 function App() {
+	const postsData = [
+		{
+			post: {
+				user: {
+					name: 'Alice',
+					picture: 'https://example.com/alice.jpg',
+				},
+				urlImage: 'https://example.com/post1.jpg',
+				likes: 15,
+				numberComments: 5,
+				time: '2023-12-26T10:30:00Z',
+				description: '¡Increíble día en la playa! ☀️🌊',
+				mainComment: 'Me encanta esta vista 😍',
+			},
+			me: {
+				followed: true,
+				liked: false,
+				comment: '¡Que foto tan genial!',
+			},
+		},
+		{
+			post: {
+				user: {
+					name: 'Bob',
+					picture: 'https://example.com/bob.jpg',
+				},
+				urlImage: 'https://example.com/post2.jpg',
+				likes: 30,
+				numberComments: 12,
+				time: '2023-12-23T18:45:00Z',
+				description: 'Explorando nuevas aventuras ⛰️🌲',
+			},
+			me: {
+				followed: false,
+				liked: true,
+			},
+		},
+		{
+			post: {
+				user: {
+					name: 'Eva',
+					picture: 'https://example.com/eva.jpg',
+				},
+				urlImage: 'https://example.com/post3.jpg',
+				likes: 20,
+				numberComments: 8,
+				time: '2023-12-22T15:20:00Z',
+				description: 'Disfrutando de la naturaleza 🌿✨',
+				mainComment: 'Hermoso paisaje 🏞️',
+			},
+			me: {
+				followed: true,
+				liked: true,
+				comment: '¡Fantástica vista!',
+			},
+		},
+	];
+
 	return (
 		<>
-			<h1 className='text-3xl font-bold underline'>Instagram Clone</h1>
-			<main>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora mollitia accusamus nesciunt labore et quia
-					iste dolor eum a quasi! Rem, ratione eius quaerat fugit quae id voluptatibus. Deleniti, quas?
-				</p>
+			<main className='bg-gray-200 flex justify-center items-center'>
+				<div>
+					{!!postsData && (
+						<>
+							{postsData.map((post) => (
+								<Post {...post} />
+							))}
+						</>
+					)}
+				</div>
 			</main>
 		</>
 	);
