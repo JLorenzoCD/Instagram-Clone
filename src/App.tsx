@@ -17,6 +17,7 @@ function App() {
 			me: {
 				followed: true,
 				liked: false,
+				saved: false,
 				comment: '¡Que foto tan genial!',
 			},
 		},
@@ -39,6 +40,7 @@ function App() {
 			me: {
 				followed: false,
 				liked: true,
+				saved: false,
 			},
 		},
 		{
@@ -61,6 +63,7 @@ function App() {
 				followed: true,
 				liked: true,
 				comment: '¡Fantástico!',
+				saved: true,
 			},
 		},
 	];
