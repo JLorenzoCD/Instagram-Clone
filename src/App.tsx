@@ -13,7 +13,6 @@ function App() {
 				numberComments: 5,
 				time: '2023-12-26T10:30:00Z',
 				description: '¡Increíble día en la playa! ☀️🌊',
-				mainComment: 'Me encanta esta vista 😍',
 			},
 			me: {
 				followed: true,
@@ -32,6 +31,10 @@ function App() {
 				numberComments: 12,
 				time: '2023-12-23T18:45:00Z',
 				description: 'Explorando nuevas aventuras ⛰️🌲',
+				mainComment: {
+					comment: 'Me encanta esta vista 😍',
+					username: 'Eva',
+				},
 			},
 			me: {
 				followed: false,
@@ -49,12 +52,15 @@ function App() {
 				numberComments: 8,
 				time: '2023-12-22T15:20:00Z',
 				description: 'Disfrutando de la naturaleza 🌿✨',
-				mainComment: 'Hermoso paisaje 🏞️',
+				mainComment: {
+					comment: 'Hermoso paisaje 🏞️',
+					username: 'Alice',
+				},
 			},
 			me: {
 				followed: true,
 				liked: true,
-				comment: '¡Fantástica vista!',
+				comment: '¡Fantástico!',
 			},
 		},
 	];

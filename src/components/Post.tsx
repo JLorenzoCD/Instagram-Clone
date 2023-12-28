@@ -10,7 +10,10 @@ interface Props {
 		time: string;
 		description: string;
 
-		mainComment?: string;
+		mainComment?: {
+			username: string;
+			comment: string;
+		};
 	};
 	me: {
 		followed: boolean;
@@ -127,7 +130,7 @@ export default function Post({ post, me }: Props) {
 					)}
 				</div>
 			</div>
-			<footer className='p-4'>
+			<footer className='px-4 pb-4'>
 				{1 < post.numberComments && (
 					<div className='text-gray-500 text-sm'>View all {post.numberComments} comments</div>
 				)}
@@ -137,13 +140,19 @@ export default function Post({ post, me }: Props) {
 					</div>
 				) : (
 					<>
-						{!!post.mainComment && post.mainComment.trim().length !== 0 && (
+						{!!post.mainComment && post.mainComment.comment.trim().length !== 0 && (
 							<div className='text-sm'>
-								<span className='font-semibold'>Me </span> {me.comment}
+								<span className='font-semibold'>{post.mainComment.username} </span> {post.mainComment.comment}
 							</div>
 						)}
 					</>
 				)}
+
+				<input
+					type='text'
+					className=' text-gray-900 text-sm focus:outline-0 block w-full py-2'
+					placeholder='Add a comment...'
+				/>
 			</footer>
 		</article>
 	);
