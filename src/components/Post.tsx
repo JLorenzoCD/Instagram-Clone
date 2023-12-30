@@ -37,7 +37,7 @@ export default function Post({ post, me }: Props) {
 			: post.description;
 
 	return (
-		<article className='bg-white border-gray-300 w-96 border mb-2'>
+		<article className='bg-white border-gray-300 w-96 border mb-4'>
 			<header className='grid grid-cols-6 items-center p-3 border-b border-b-gray-300'>
 				<div className='w-10 h-10'>
 					{/* <img src={data.userPicture} className='rounded-full' /> */}
@@ -162,7 +162,7 @@ function SkeletonImage() {
 	);
 }
 
-function SkeletonProfile() {
+export function SkeletonProfile() {
 	return (
 		<div role='status' className='animate-pulse w-full h-full'>
 			<div className='flex items-center justify-center w-full h-full'>
