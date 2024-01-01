@@ -1,48 +1,13 @@
-import { SkeletonProfile } from './Post';
+import SkeletonProfile from './skeleton/Profile';
+
+import { myStorie, storiesData } from '../data/stories';
 
 function Stories() {
-	const me = {
-		profile: 'https://placekitten.com/202/201',
-		username: 'kitty_1',
-		isMe: true,
-	};
-
-	const data = [
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_2',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_3',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_4',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_2',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_3',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_4',
-		},
-		{
-			profile: 'https://placekitten.com/202/201',
-			username: 'kitty_2',
-		},
-	];
-
 	return (
 		<div className='max-w-2xl mx-auto p-3 mb-5'>
 			<ul className='flex space-x-6'>
-				<Storie {...me} />
-				{!!data && data.length !== 0 && data.map((storie) => <Storie {...storie} />)}
+				<Storie {...myStorie} />
+				{!!storiesData && storiesData.length !== 0 && storiesData.map((storie) => <Storie {...storie} />)}
 			</ul>
 		</div>
 	);
