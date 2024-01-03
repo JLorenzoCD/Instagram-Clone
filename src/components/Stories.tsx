@@ -7,7 +7,9 @@ function Stories() {
 		<div className='max-w-2xl mx-auto p-3 mb-5'>
 			<ul className='flex space-x-6'>
 				<Storie {...myStorie} />
-				{!!storiesData && storiesData.length !== 0 && storiesData.map((storie) => <Storie {...storie} />)}
+				{!!storiesData &&
+					storiesData.length !== 0 &&
+					storiesData.map((storie) => <Storie {...storie} key={storie.username} />)}
 			</ul>
 		</div>
 	);

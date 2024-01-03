@@ -1,6 +1,8 @@
 export const postsData = [
 	{
 		post: {
+			id: 1,
+
 			user: {
 				name: 'Alice',
 				picture: 'https://example.com/alice.jpg',
@@ -20,6 +22,8 @@ export const postsData = [
 	},
 	{
 		post: {
+			id: 2,
+
 			user: {
 				name: 'Bob',
 				picture: 'https://example.com/bob.jpg',
@@ -42,6 +46,8 @@ export const postsData = [
 	},
 	{
 		post: {
+			id: 3,
+
 			user: {
 				name: 'Eva',
 				picture: 'https://example.com/eva.jpg',
