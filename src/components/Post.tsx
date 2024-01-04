@@ -44,7 +44,7 @@ export default function Post({ post, me }: Props) {
 			<header className='grid grid-cols-6 items-center p-3 border-b border-b-gray-300'>
 				<div className='w-10 h-10'>
 					{/* <img src={data.userPicture} className='rounded-full' /> */}
-					<SkeletonProfile />
+					<SkeletonProfile className='size-full' />
 				</div>
 				<div className='col-span-4 text-sm font-semibold'>
 					{post.user.name} • <span className='text-gray-400 text-xs'>{getTimeAgo(post.time)}</span>

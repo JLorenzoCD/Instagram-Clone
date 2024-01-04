@@ -28,7 +28,7 @@ export function Storie({ username, isMe = false }: StorieProps) {
 			<div className={`${isMe ? 'relative' : ''} bg-gradient-to-tr from-yellow-400 to-purple-600 p-1 rounded-full`}>
 				<a href='#' className='block bg-white p-1 rounded-full transform transition hover:-rotate-6 size-12'>
 					{/* <img className='w-24 h-24 rounded-full' src={profile} alt={`instagram-profile-${username}`} /> */}
-					<SkeletonProfile />
+					<SkeletonProfile className='size-full' />
 				</a>
 
 				{!!isMe && (
