@@ -1,4 +1,5 @@
 import Footer from './components/Footer';
+import Menu from './components/Menu';
 import Post from './components/Post';
 import Stories from './components/Stories';
 import Suggestions from './components/Suggestions';
@@ -16,7 +17,9 @@ function App() {
 
 	return (
 		<div className='bg-zinc-50 grid grid-cols-8'>
-			<header className='col-span-2'>Menu</header>
+			<div className='col-span-2 border-r-2'>
+				<Menu className='fixed p-4' />
+			</div>
 			<main className='col-span-4'>
 				<Stories />
 				<section className='flex justify-center'>
