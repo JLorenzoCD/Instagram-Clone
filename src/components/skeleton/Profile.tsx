@@ -8,7 +8,7 @@ export default function SkeletonProfile(props: Props) {
 					className='text-gray-200'
 					aria-hidden='true'
 					xmlns='http://www.w3.org/2000/svg'
-					fill='currentColor'
+					fill='gray'
 					height={20}
 					role='img'
 					viewBox='0 0 20 20'
