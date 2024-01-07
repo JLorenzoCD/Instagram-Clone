@@ -1,4 +1,5 @@
 import Heart from '../components/icons/Heart';
+import Message from '../components/icons/Message';
 import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
 import Tagged from '../components/icons/Tagged';
@@ -109,14 +110,14 @@ function Profile() {
 					{/* flexbox grid */}
 					<div className='flex flex-wrap -mx-px md:-mx-3'>
 						{/* column */}
-						<UserPost />
-						<UserPost />
-						<UserPost />
-						<UserPost />
-						<UserPost />
-						<UserPost />
-						<UserPost />
-						<UserPost />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
+						<PostProfile />
 					</div>
 				</div>
 			</div>
@@ -126,31 +127,29 @@ function Profile() {
 
 export default Profile;
 
-export function UserPost() {
+export function PostProfile() {
 	const data = {
-		image: 'https://stackdiary.com/300x500.png',
+		image: 'https://picsum.photos/275/385',
 		alt: 'image',
 		likes: 50,
 		comments: 30,
 	};
 
 	return (
-		<div className='w-1/3 p-px md:px-3'>
+		<div className='w-1/3 h-fit p-px md:px-3'>
 			<a href='#'>
-				<article className='post bg-gray-100 text-white relative pb-full md:mb-6'>
-					<img className='w-full h-full absolute left-0 top-0 object-cover' src={data.image} alt={data.alt} />
+				<article className='bg-gray-100 text-white md:mb-6 relative overflow-hidden'>
+					<img className='h-96 w-full object-cover' src={data.image} alt={data.alt} />
 					{/* overlay*/}
-					<div className='overlay bg-gray-800 bg-opacity-25 w-full h-full absolute left-0 top-0 hidden'>
-						<div className='flex justify-center items-center space-x-4 h-full'>
-							<span className='p-2'>
-								<Heart />
-								{data.likes}
-							</span>
-							<span className='p-2'>
-								<i className='fas fa-comment' />
-								{data.comments}
-							</span>
-						</div>
+					<div className='top-0 left-0 absolute h-full w-full bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300'>
+						<span className='p-2'>
+							<Heart />
+							{data.likes}
+						</span>
+						<span className='p-2'>
+							<Message />
+							{data.comments}
+						</span>
 					</div>
 				</article>
 			</a>
