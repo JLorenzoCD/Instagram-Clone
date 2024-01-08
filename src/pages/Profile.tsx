@@ -141,9 +141,9 @@ export function PostProfile() {
 				<article className='bg-gray-100 text-white md:mb-6 relative overflow-hidden'>
 					<img className='h-96 w-full object-cover' src={data.image} alt={data.alt} />
 					{/* overlay*/}
-					<div className='top-0 left-0 absolute h-full w-full bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300'>
+					<div className='top-0 left-0 absolute h-full w-full bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300'>
 						<span className='p-2'>
-							<Heart />
+							<Heart stroke='white' />
 							{data.likes}
 						</span>
 						<span className='p-2'>
