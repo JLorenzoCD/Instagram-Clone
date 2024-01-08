@@ -1,11 +1,11 @@
-interface Props {
-	fill?: boolean;
+interface Props extends React.SVGProps<SVGSVGElement> {
+	liked?: boolean;
 }
 
-function Heart({ fill = false }: Props) {
+function Heart({ liked = false, ...props }: Props) {
 	let borderSvg;
 
-	if (fill) {
+	if (liked) {
 		borderSvg = 'red';
 	} else {
 		borderSvg = 'black';
@@ -15,9 +15,10 @@ function Heart({ fill = false }: Props) {
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			className='h-6 w-6'
-			fill={fill ? 'red' : 'none'}
+			fill={liked ? 'red' : 'none'}
 			viewBox='0 0 24 24'
 			stroke={borderSvg}
+			{...props}
 		>
 			<path
 				strokeLinecap='round'
