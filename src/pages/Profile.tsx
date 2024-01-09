@@ -100,9 +100,16 @@ function Profile() {
 						</li>
 					</ul>
 					{/* flexbox grid */}
-					<div className='flex flex-wrap -mx-px md:-mx-3'>
+					<div className='grid gap-1 grid-cols-3 -mx-px md:-mx-3'>
 						{/* column */}
-						{profileData.posts.length !== 0 && profileData.posts.map((post) => <PostProfile {...post} />)}
+						{profileData.posts.length !== 0 &&
+							profileData.posts.map((post) => (
+								<>
+									<div className='p-px md:px-3'>
+										<PostProfile {...post} />
+									</div>
+								</>
+							))}
 					</div>
 				</div>
 			</div>
