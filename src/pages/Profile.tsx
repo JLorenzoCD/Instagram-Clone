@@ -4,25 +4,9 @@ import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
 import Tagged from '../components/icons/Tagged';
 
+import { profileData } from '../data/profile';
+
 function Profile() {
-	const data = {
-		profileImage:
-			'https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
-		username: 'mrtravlerrr_2',
-		numberPost: 50,
-		numberFollowers: 123,
-		numberFollowing: 157,
-		description: 'Mr Travlerrr...\nTravel, Nature and Music\nLorem ipsum dolor sit amet consectetur',
-	};
-
-	const dataPostProfile = {
-		image: 'https://picsum.photos/275/385',
-		alt: 'image',
-		likes: 50,
-		comments: 30,
-		time: '2023-12-26T10:30:00Z',
-	};
-
 	return (
 		<main className='bg-gray-100 bg-opacity-25'>
 			<div className='lg:w-8/12 lg:mx-auto mb-8'>
@@ -31,14 +15,14 @@ function Profile() {
 						{/* profile image */}
 						<img
 							className='w-20 h-20 md:w-40 md:h-40 object-cover rounded-full border-2 border-pink-600 p-1'
-							src={data.profileImage}
-							alt={`${data.username}-profile-image`}
+							src={profileData.profileImage}
+							alt={`${profileData.username}-profile-image`}
 						/>
 					</div>
 					{/* profile meta */}
 					<div className='w-8/12 md:w-7/12 ml-4'>
 						<div className='md:flex md:flex-wrap md:items-center mb-4'>
-							<h2 className='text-3xl inline-block font-light sm:mr-5 mb-2 sm:mb-0'>{data.username}</h2>
+							<h2 className='text-3xl inline-block font-light sm:mr-5 mb-2 sm:mb-0'>{profileData.username}</h2>
 							{/* follow button */}
 							<a
 								href='#'
@@ -50,28 +34,28 @@ function Profile() {
 						{/* post, following, followers list for medium screens */}
 						<ul className='hidden md:flex space-x-8 mb-4'>
 							<li>
-								<span className='font-semibold'>{data.numberPost} </span>
+								<span className='font-semibold'>{profileData.numberPost} </span>
 								posts
 							</li>
 							<li>
-								<span className='font-semibold'>{data.numberFollowers} </span>
+								<span className='font-semibold'>{profileData.numberFollowers} </span>
 								followers
 							</li>
 							<li>
-								<span className='font-semibold'>{data.numberFollowing} </span>
+								<span className='font-semibold'>{profileData.numberFollowing} </span>
 								following
 							</li>
 						</ul>
 						{/* user meta form medium screens */}
 						<div className='hidden md:block'>
-							{data.description.split('\n').map((paragraph) => (
+							{profileData.description.split('\n').map((paragraph) => (
 								<p>{paragraph}</p>
 							))}
 						</div>
 					</div>
 					{/* user meta form small screens */}
 					<div className='md:hidden text-sm my-2'>
-						{data.description.split('\n').map((paragraph) => (
+						{profileData.description.split('\n').map((paragraph) => (
 							<p>{paragraph}</p>
 						))}
 					</div>
@@ -81,15 +65,15 @@ function Profile() {
 					{/* user following for mobile only */}
 					<ul className='flex md:hidden justify-around space-x-8 border-t text-center p-2 text-gray-600 leading-snug text-sm'>
 						<li>
-							<span className='font-semibold text-gray-800 block'>{data.numberPost} </span>
+							<span className='font-semibold text-gray-800 block'>{profileData.numberPost} </span>
 							posts
 						</li>
 						<li>
-							<span className='font-semibold text-gray-800 block'>{data.numberFollowers} </span>
+							<span className='font-semibold text-gray-800 block'>{profileData.numberFollowers} </span>
 							followers
 						</li>
 						<li>
-							<span className='font-semibold text-gray-800 block'>{data.numberFollowing} </span>
+							<span className='font-semibold text-gray-800 block'>{profileData.numberFollowing} </span>
 							following
 						</li>
 					</ul>
@@ -118,12 +102,7 @@ function Profile() {
 					{/* flexbox grid */}
 					<div className='flex flex-wrap -mx-px md:-mx-3'>
 						{/* column */}
-						<PostProfile {...dataPostProfile} />
-						<PostProfile {...dataPostProfile} />
-						<PostProfile {...dataPostProfile} />
-						<PostProfile {...dataPostProfile} />
-						<PostProfile {...dataPostProfile} />
-						<PostProfile {...dataPostProfile} />
+						{profileData.posts.length !== 0 && profileData.posts.map((post) => <PostProfile {...post} />)}
 					</div>
 				</div>
 			</div>
