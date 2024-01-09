@@ -15,6 +15,14 @@ function Profile() {
 		description: 'Mr Travlerrr...\nTravel, Nature and Music\nLorem ipsum dolor sit amet consectetur',
 	};
 
+	const dataPostProfile = {
+		image: 'https://picsum.photos/275/385',
+		alt: 'image',
+		likes: 50,
+		comments: 30,
+		time: '2023-12-26T10:30:00Z',
+	};
+
 	return (
 		<main className='bg-gray-100 bg-opacity-25'>
 			<div className='lg:w-8/12 lg:mx-auto mb-8'>
@@ -110,14 +118,12 @@ function Profile() {
 					{/* flexbox grid */}
 					<div className='flex flex-wrap -mx-px md:-mx-3'>
 						{/* column */}
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
-						<PostProfile />
+						<PostProfile {...dataPostProfile} />
+						<PostProfile {...dataPostProfile} />
+						<PostProfile {...dataPostProfile} />
+						<PostProfile {...dataPostProfile} />
+						<PostProfile {...dataPostProfile} />
+						<PostProfile {...dataPostProfile} />
 					</div>
 				</div>
 			</div>
@@ -126,29 +132,29 @@ function Profile() {
 }
 
 export default Profile;
+interface PropsPostProfile {
+	image: string;
+	alt: string;
+	likes: number;
+	comments: number;
+	time: string;
+}
 
-export function PostProfile() {
-	const data = {
-		image: 'https://picsum.photos/275/385',
-		alt: 'image',
-		likes: 50,
-		comments: 30,
-	};
-
+export function PostProfile({ image, alt, likes, comments }: PropsPostProfile) {
 	return (
 		<div className='w-1/3 h-fit p-px md:px-3'>
 			<a href='#'>
 				<article className='bg-gray-100 text-white md:mb-6 relative overflow-hidden'>
-					<img className='h-96 w-full object-cover' src={data.image} alt={data.alt} />
+					<img className='h-96 w-full object-cover' src={image} alt={alt} />
 					{/* overlay*/}
 					<div className='top-0 left-0 absolute h-full w-full bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300'>
 						<span className='p-2'>
 							<Heart stroke='white' />
-							{data.likes}
+							{likes}
 						</span>
 						<span className='p-2'>
 							<Message />
-							{data.comments}
+							{comments}
 						</span>
 					</div>
 				</article>
