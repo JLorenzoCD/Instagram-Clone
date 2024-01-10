@@ -17,44 +17,46 @@ function Home() {
 
 	return (
 		<Layout>
-			<div className='col-span-4'>
-				<Stories />
-				<section className='flex justify-center'>
-					<div>
-						{!!postsData && (
-							<>
-								{postsData.map((postData) => (
-									<Post {...postData} key={postData.post.id} />
-								))}
-							</>
-						)}
-					</div>
-				</section>
-			</div>
-
-			<aside className='col-span-2'>
-				<div className='fixed p-5 w-80'>
-					<div className='flex flex-row'>
-						<a href='#'>
-							<img className='rounded-full' src={currentUserData.me.image} width='100' />
-						</a>
-						<div className='w-72 pl-2 m-auto'>
-							<div className='text-sm font-medium'>
-								<a href='#'>{currentUserData.me.username}</a>
-							</div>
-							<div className='text-gray-500 text-sm leading-4'>{currentUserData.me.name}</div>
+			<div className=' grid grid-cols-6'>
+				<div className='col-span-4'>
+					<Stories />
+					<section className='flex justify-center'>
+						<div>
+							{!!postsData && (
+								<>
+									{postsData.map((postData) => (
+										<Post {...postData} key={postData.post.id} />
+									))}
+								</>
+							)}
 						</div>
-						<div className='w-32 text-right m-auto'>
-							<a className='text-xs text-sky-500 font-bold cursor-pointer' onClick={() => console.log('Sing Out')}>
-								Sign Out
-							</a>
-						</div>
-					</div>
-
-					<Suggestions />
-					<Footer />
+					</section>
 				</div>
-			</aside>
+
+				<aside className='col-span-2'>
+					<div className='fixed p-5 w-80'>
+						<div className='flex flex-row'>
+							<a href='#'>
+								<img className='rounded-full' src={currentUserData.me.image} width='100' />
+							</a>
+							<div className='w-72 pl-2 m-auto'>
+								<div className='text-sm font-medium'>
+									<a href='#'>{currentUserData.me.username}</a>
+								</div>
+								<div className='text-gray-500 text-sm leading-4'>{currentUserData.me.name}</div>
+							</div>
+							<div className='w-32 text-right m-auto'>
+								<a className='text-xs text-sky-500 font-bold cursor-pointer' onClick={() => console.log('Sing Out')}>
+									Sign Out
+								</a>
+							</div>
+						</div>
+
+						<Suggestions />
+						<Footer />
+					</div>
+				</aside>
+			</div>
 		</Layout>
 	);
 }

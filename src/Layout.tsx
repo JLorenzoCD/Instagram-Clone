@@ -10,7 +10,7 @@ function Layout({ children }: Props) {
 			<div className='col-span-2 border-r-2'>
 				<Menu className='fixed p-4' />
 			</div>
-			<main className='col-span-6 grid grid-cols-6'>{children}</main>
+			<main className='col-span-6'>{children}</main>
 		</div>
 	);
 }
