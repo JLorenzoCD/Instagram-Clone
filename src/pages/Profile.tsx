@@ -1,3 +1,4 @@
+import Layout from '../Layout';
 import { PostProfile } from '../components/PostProfile';
 
 import Posts from '../components/icons/Posts';
@@ -8,8 +9,8 @@ import { profileData } from '../data/profile';
 
 function Profile() {
 	return (
-		<main className='bg-gray-100 bg-opacity-25'>
-			<div className='lg:w-8/12 lg:mx-auto mb-8'>
+		<Layout>
+			<div className='lg:w-10/12 lg:mx-auto mb-8'>
 				<header className='flex flex-wrap items-center p-4 md:py-8'>
 					<div className='md:w-3/12 md:ml-16'>
 						{/* profile image */}
@@ -113,7 +114,7 @@ function Profile() {
 					</div>
 				</div>
 			</div>
-		</main>
+		</Layout>
 	);
 }
 
