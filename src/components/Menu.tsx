@@ -11,9 +11,7 @@ import SkeletonProfile from './skeleton/Profile';
 import InstagramText from './icons/InstagramText';
 import Instagram from './icons/Instagram';
 
-interface Props extends React.HTMLAttributes<HTMLElement> {}
-
-function Menu(props: Props) {
+function Menu() {
 	const links = [
 		{
 			to: '#',
@@ -62,17 +60,63 @@ function Menu(props: Props) {
 		},
 	];
 
+	const linksMobile = [
+		{
+			to: '#',
+			text: 'Inicio',
+			icon: Home,
+		},
+		{
+			to: '#',
+			text: 'Explorar',
+			icon: Explore,
+		},
+		{
+			to: '#',
+			text: 'Reels',
+			icon: Reels,
+		},
+		{
+			to: '#',
+			text: 'Crear',
+			icon: Create,
+		},
+		{
+			to: '#',
+			text: 'Mensajes',
+			icon: Message,
+		},
+		{
+			to: '#',
+			text: 'Perfil',
+			icon: SkeletonProfile,
+		},
+	];
+
 	return (
-		<header {...props}>
-			<div className='p-5 mb-6'>
+		<header className='bg-zinc-50 fixed lg:p-4 z-10 bottom-0'>
+			<div className='hidden sm:block p-5 mb-6'>
 				<InstagramText className='hidden lg:block' />
 				<Instagram className='lg:hidden' />
 			</div>
-			<ul>
+			<ul className='hidden sm:block pl-1'>
 				{links.map((link) => (
-					<li key={link.text} className='py-4 pl-5 lg:p-4'>
-						<a href={link.to} className='flex'>
-							<span className='size-6 mr-5'>
+					<li key={link.text}>
+						<a href={link.to} className='flex p-4 lg:p-4'>
+							<span className='size-6'>
+								<link.icon className='size-full' />
+							</span>{' '}
+							<p className='hidden ml-4 lg:block'>{link.text}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+
+			<ul className='flex justify-evenly sm:hidden w-screen'>
+				{linksMobile.map((link) => (
+					<li key={link.text}>
+						<a href={link.to} className='flex p-3'>
+							<span className='size-6'>
 								<link.icon className='size-full' />
 							</span>{' '}
 							<p className='hidden lg:block'>{link.text}</p>
