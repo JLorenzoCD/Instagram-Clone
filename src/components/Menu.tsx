@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Home from './icons/Home';
 import Search from './icons/Search';
 import Explore from './icons/Explore';
@@ -14,7 +16,7 @@ import Instagram from './icons/Instagram';
 function Menu() {
 	const links = [
 		{
-			to: '#',
+			to: '/',
 			text: 'Inicio',
 			icon: Home,
 		},
@@ -49,7 +51,7 @@ function Menu() {
 			icon: Create,
 		},
 		{
-			to: '#',
+			to: '/profile',
 			text: 'Perfil',
 			icon: SkeletonProfile,
 		},
@@ -62,7 +64,7 @@ function Menu() {
 
 	const linksMobile = [
 		{
-			to: '#',
+			to: '/',
 			text: 'Inicio',
 			icon: Home,
 		},
@@ -87,14 +89,14 @@ function Menu() {
 			icon: Message,
 		},
 		{
-			to: '#',
+			to: '/profile',
 			text: 'Perfil',
 			icon: SkeletonProfile,
 		},
 	];
 
 	return (
-		<header className='bg-zinc-50 fixed lg:p-4 z-10 bottom-0'>
+		<header className='bg-zinc-50 fixed lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
 			<div className='hidden sm:block p-5 mb-6'>
 				<InstagramText className='hidden lg:block' />
 				<Instagram className='lg:hidden' />
@@ -102,12 +104,12 @@ function Menu() {
 			<ul className='hidden sm:block pl-1'>
 				{links.map((link) => (
 					<li key={link.text}>
-						<a href={link.to} className='flex p-4 lg:p-4'>
+						<Link to={link.to} className='flex p-4 lg:p-4'>
 							<span className='size-6'>
 								<link.icon className='size-full' />
 							</span>{' '}
 							<p className='hidden ml-4 lg:block'>{link.text}</p>
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>
@@ -115,12 +117,12 @@ function Menu() {
 			<ul className='flex justify-evenly sm:hidden w-screen'>
 				{linksMobile.map((link) => (
 					<li key={link.text}>
-						<a href={link.to} className='flex p-3'>
+						<Link to={link.to} className='flex p-3'>
 							<span className='size-6'>
 								<link.icon className='size-full' />
 							</span>{' '}
 							<p className='hidden lg:block'>{link.text}</p>
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>
