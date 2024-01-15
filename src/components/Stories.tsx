@@ -4,7 +4,7 @@ import { myStorie, storiesData } from '../data/stories';
 
 function Stories() {
 	return (
-		<div className='max-w-2xl mx-auto p-3 mb-5'>
+		<div className='max-w-full overflow-hidden md:max-w-2xl mx-auto p-3 mb-5'>
 			<ul className='flex space-x-6'>
 				<Storie {...myStorie} />
 				{!!storiesData &&

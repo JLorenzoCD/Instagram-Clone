@@ -50,14 +50,14 @@ function Profile() {
 						{/* user meta form medium screens */}
 						<div className='hidden md:block'>
 							{profileData.description.split('\n').map((paragraph) => (
-								<p>{paragraph}</p>
+								<p key={`1-${paragraph}`}>{paragraph}</p>
 							))}
 						</div>
 					</div>
 					{/* user meta form small screens */}
 					<div className='md:hidden text-sm my-2'>
 						{profileData.description.split('\n').map((paragraph) => (
-							<p>{paragraph}</p>
+							<p key={`2-${paragraph}`}>{paragraph}</p>
 						))}
 					</div>
 				</header>
@@ -105,11 +105,9 @@ function Profile() {
 						{/* column */}
 						{profileData.posts.length !== 0 &&
 							profileData.posts.map((post) => (
-								<>
-									<div className='p-px md:px-3'>
-										<PostProfile {...post} />
-									</div>
-								</>
+								<div key={post.id} className='p-px md:px-3'>
+									<PostProfile {...post} />
+								</div>
 							))}
 					</div>
 				</div>

@@ -40,19 +40,21 @@ export default function Post({ post, me }: Props) {
 			: post.description;
 
 	return (
-		<article className='bg-white border-gray-300 w-96 border mb-4'>
-			<header className='grid grid-cols-6 items-center p-3 border-b border-b-gray-300'>
-				<div className='w-10 h-10'>
-					{/* <img src={data.userPicture} className='rounded-full' /> */}
-					<SkeletonProfile className='size-full' />
-				</div>
-				<div className='col-span-4 text-sm font-semibold'>
-					{post.user.name} • <span className='text-gray-400 text-xs'>{getTimeAgo(post.time)}</span>
-					{!me.followed && (
-						<>
-							{''} • <span className='text-blue-500 text-xs'>Folow</span>
-						</>
-					)}
+		<article className='bg-white border-gray-300 max-w-96 border mb-4 mx-auto sm:w-96 '>
+			<header className='flex justify-between p-3 border-b border-b-gray-300'>
+				<div className='flex items-center'>
+					<div className='w-10 h-10 mr-4'>
+						{/* <img src={data.userPicture} className='rounded-full' /> */}
+						<SkeletonProfile className='size-full' />
+					</div>
+					<div className='col-span-4 text-sm font-semibold'>
+						{post.user.name} • <span className='text-gray-400 text-xs'>{getTimeAgo(post.time)}</span>
+						{!me.followed && (
+							<>
+								{''} • <span className='text-blue-500 text-xs'>Folow</span>
+							</>
+						)}
+					</div>
 				</div>
 
 				<div className='flex justify-center items-center'>
@@ -72,13 +74,13 @@ export default function Post({ post, me }: Props) {
 					</svg>
 				</div>
 			</header>
-			<div style={{ width: 382, height: 382 }}>
+			<div className='h-96 sm:size-96'>
 				{/* <img src={data.postImage} /> */}
 				<SkeletonImage />
 			</div>
 			<div className='flex flex-col p-4 gap-3'>
 				<div className='flex flex-row gap-3'>
-					<Heart fill={me.liked} />
+					<Heart liked={me.liked} />
 					<Message />
 					<Share />
 					<SavePost saved={me.saved} />

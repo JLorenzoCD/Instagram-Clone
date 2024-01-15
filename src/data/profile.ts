@@ -8,6 +8,7 @@ export const profileData = {
 	description: 'Mr Travlerrr...\nTravel, Nature and Music\nLorem ipsum dolor sit amet consectetur',
 	posts: [
 		{
+			id: 1,
 			image: 'https://picsum.photos/275/385',
 			alt: 'image',
 			likes: 50,
@@ -15,6 +16,7 @@ export const profileData = {
 			time: '2023-12-26T10:30:00Z',
 		},
 		{
+			id: 2,
 			image: 'https://picsum.photos/275/385',
 			alt: 'image',
 			likes: 25,
@@ -22,6 +24,7 @@ export const profileData = {
 			time: '2023-12-25T08:15:00Z',
 		},
 		{
+			id: 3,
 			image: 'https://picsum.photos/275/385',
 			alt: 'image',
 			likes: 70,
@@ -29,6 +32,7 @@ export const profileData = {
 			time: '2023-12-24T15:45:00Z',
 		},
 		{
+			id: 4,
 			image: 'https://picsum.photos/275/385',
 			alt: 'image',
 			likes: 15,
@@ -36,6 +40,7 @@ export const profileData = {
 			time: '2023-12-23T12:00:00Z',
 		},
 		{
+			id: 5,
 			image: 'https://picsum.photos/275/385',
 			alt: 'image',
 			likes: 35,

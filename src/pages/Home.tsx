@@ -21,7 +21,7 @@ function Home() {
 				<div className='col-span-4'>
 					<Stories />
 					<section className='flex justify-center'>
-						<div>
+						<div className='w-full px-2'>
 							{!!postsData && (
 								<>
 									{postsData.map((postData) => (
