@@ -1,11 +1,11 @@
 export const profileData = {
 	profileImage:
 		'https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
-	username: 'mrtravlerrr_2',
+	username: 'me',
 	numberPost: 50,
 	numberFollowers: 123,
 	numberFollowing: 157,
-	description: 'Mr Travlerrr...\nTravel, Nature and Music\nLorem ipsum dolor sit amet consectetur',
+	description: 'Travel, Nature and Music\nLorem ipsum dolor sit amet consectetur',
 	posts: [
 		{
 			id: 1,
