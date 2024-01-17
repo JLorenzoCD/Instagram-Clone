@@ -18,7 +18,7 @@ function Home() {
 	return (
 		<Layout>
 			<div className='xl:grid xl:grid-cols-6'>
-				<div className='col-span-4'>
+				<div className='xl:col-span-4'>
 					<Stories />
 					<section className='flex justify-center'>
 						<div className='w-full px-2'>
@@ -33,7 +33,7 @@ function Home() {
 					</section>
 				</div>
 
-				<aside className='hidden xl:block col-span-2'>
+				<aside className='hidden xl:block xl:col-span-2'>
 					<div className='fixed p-5 w-80'>
 						<div className='flex flex-row'>
 							<a href='#'>
