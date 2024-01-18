@@ -96,15 +96,15 @@ function Menu() {
 	];
 
 	return (
-		<header className='bg-zinc-50 fixed lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
-			<div className='hidden sm:block p-5 mb-6'>
+		<header className='bg-zinc-50 fixed sm:sticky lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
+			<Link to='/' className='hidden sm:block p-5 mb-6'>
 				<InstagramText className='hidden lg:block' />
 				<Instagram className='lg:hidden' />
-			</div>
+			</Link>
 			<ul className='hidden sm:block pl-1'>
 				{links.map((link) => (
 					<li key={link.text}>
-						<Link to={link.to} className='flex p-4 lg:p-4'>
+						<Link to={link.to} className='flex p-4 lg:p-4 hover:bg-zinc-200'>
 							<span className='size-6'>
 								<link.icon className='size-full' />
 							</span>{' '}
@@ -116,12 +116,11 @@ function Menu() {
 
 			<ul className='flex justify-evenly sm:hidden w-screen'>
 				{linksMobile.map((link) => (
-					<li key={link.text}>
-						<Link to={link.to} className='flex p-3'>
+					<li key={link.text} className='flex-1'>
+						<Link to={link.to} className='flex justify-center py-3 hover:bg-zinc-200'>
 							<span className='size-6'>
 								<link.icon className='size-full' />
-							</span>{' '}
-							<p className='hidden lg:block'>{link.text}</p>
+							</span>
 						</Link>
 					</li>
 				))}
