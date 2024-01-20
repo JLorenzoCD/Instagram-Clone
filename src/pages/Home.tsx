@@ -1,4 +1,3 @@
-import Layout from '../Layout';
 import Footer from './../components/Footer';
 import Post from './../components/Post';
 import Stories from './../components/Stories';
@@ -16,7 +15,7 @@ function Home() {
 	};
 
 	return (
-		<Layout>
+		<>
 			<div className='xl:grid xl:grid-cols-6'>
 				<div className='xl:col-span-4'>
 					<Stories />
@@ -57,7 +56,7 @@ function Home() {
 					</div>
 				</aside>
 			</div>
-		</Layout>
+		</>
 	);
 }
 
