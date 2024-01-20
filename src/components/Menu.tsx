@@ -1,100 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import Home from './icons/Home';
-import Search from './icons/Search';
-import Explore from './icons/Explore';
-import Reels from './icons/Reels';
-import Message from './icons/Message';
-import Heart from './icons/Heart';
-import Create from './icons/Create';
-import Config from './icons/Config';
-import SkeletonProfile from './skeleton/Profile';
+import { allLinks, mobileLinks } from '../consts/menuLinks';
 
 import InstagramText from './icons/InstagramText';
 import Instagram from './icons/Instagram';
 
 function Menu() {
-	const links = [
-		{
-			to: '/',
-			text: 'Inicio',
-			icon: Home,
-		},
-		{
-			to: '#',
-			text: 'Buscar',
-			icon: Search,
-		},
-		{
-			to: '#',
-			text: 'Explorar',
-			icon: Explore,
-		},
-		{
-			to: '#',
-			text: 'Reels',
-			icon: Reels,
-		},
-		{
-			to: '#',
-			text: 'Mensajes',
-			icon: Message,
-		},
-		{
-			to: '#',
-			text: 'Notificaciones',
-			icon: Heart,
-		},
-		{
-			to: '#',
-			text: 'Crear',
-			icon: Create,
-		},
-		{
-			to: '/profile',
-			text: 'Perfil',
-			icon: SkeletonProfile,
-		},
-		{
-			to: '#',
-			text: 'Mas',
-			icon: Config,
-		},
-	];
-
-	const linksMobile = [
-		{
-			to: '/',
-			text: 'Inicio',
-			icon: Home,
-		},
-		{
-			to: '#',
-			text: 'Explorar',
-			icon: Explore,
-		},
-		{
-			to: '#',
-			text: 'Reels',
-			icon: Reels,
-		},
-		{
-			to: '#',
-			text: 'Crear',
-			icon: Create,
-		},
-		{
-			to: '#',
-			text: 'Mensajes',
-			icon: Message,
-		},
-		{
-			to: '/profile',
-			text: 'Perfil',
-			icon: SkeletonProfile,
-		},
-	];
-
 	return (
 		<header className='bg-zinc-50 fixed sm:sticky lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
 			<Link to='/' className='hidden sm:block p-5 mb-6'>
@@ -102,7 +13,7 @@ function Menu() {
 				<Instagram className='lg:hidden' />
 			</Link>
 			<ul className='hidden sm:block pl-1'>
-				{links.map((link) => (
+				{allLinks.map((link) => (
 					<li key={link.text}>
 						<Link to={link.to} className='flex p-4 lg:p-4 hover:bg-zinc-200'>
 							<span className='size-6'>
@@ -115,7 +26,7 @@ function Menu() {
 			</ul>
 
 			<ul className='flex justify-evenly sm:hidden w-screen'>
-				{linksMobile.map((link) => (
+				{mobileLinks.map((link) => (
 					<li key={link.text} className='flex-1'>
 						<Link to={link.to} className='flex justify-center py-3 hover:bg-zinc-200'>
 							<span className='size-6'>
