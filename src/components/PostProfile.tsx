@@ -9,7 +9,7 @@ interface Props {
 	time: string;
 }
 
-export function PostProfile({ image, alt, likes, comments }: Props) {
+export default function PostProfile({ image, alt, likes, comments }: Props) {
 	return (
 		<a href='#'>
 			<article className='bg-gray-100 text-white md:mb-6 relative overflow-hidden'>
