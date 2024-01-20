@@ -1,22 +1,6 @@
-export default function Suggestions() {
-	const suggestionsData = [
-		{
-			id: '41651',
-			image: 'https://picsum.photos/200',
-			username: 'Tomas',
-		},
-		{
-			id: '54658',
-			image: 'https://picsum.photos/200',
-			username: 'Tomas',
-		},
-		{
-			id: '268768',
-			image: 'https://picsum.photos/200',
-			username: 'Tomas',
-		},
-	];
+import { suggestionsData } from '../data/suggestions';
 
+export default function Suggestions() {
 	return (
 		<>
 			<div className='flex flex-row pt-5'>
