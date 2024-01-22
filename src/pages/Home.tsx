@@ -3,17 +3,10 @@ import Post from './../components/Post';
 import Stories from './../components/Stories';
 import Suggestions from './../components/Suggestions';
 
+import { currentUserData } from '../data/currentUser';
 import { postsData } from './../data/post';
 
 function Home() {
-	const currentUserData = {
-		me: {
-			image: 'https://picsum.photos/200',
-			username: 'me.current_user',
-			name: 'Me 👦',
-		},
-	};
-
 	return (
 		<>
 			<div className='xl:grid xl:grid-cols-6'>
