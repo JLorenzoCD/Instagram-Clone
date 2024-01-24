@@ -1,4 +1,6 @@
-export const userStorie = {
+import type { IStory } from '../types/story';
+
+export const userStorie: IStory = {
 	id: 1,
 	profile: 'https://placekitten.com/200',
 	username: 'me',
@@ -38,7 +40,7 @@ const usernames = [
 	'caleb',
 ];
 
-export const storiesData = usernames.map((username, index) => ({
+export const storiesData: IStory[] = usernames.map((username, index) => ({
 	id: 10 + index,
 	username,
 	profile: 'https://placekitten.com/200',

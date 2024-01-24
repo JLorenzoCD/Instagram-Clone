@@ -17,4 +17,10 @@ export default class UserServices {
 	getProfileData(userId: number) {
 		return this.userModel.getProfileData(userId);
 	}
+
+	getSuggestions() {
+		const currentUserId = 1;
+
+		return this.userModel.getSuggestions(currentUserId);
+	}
 }

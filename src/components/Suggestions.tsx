@@ -1,6 +1,9 @@
-import { suggestionsData } from '../data/suggestions';
+import UserServices from '../services/user';
 
 export default function Suggestions() {
+	const userServices = new UserServices();
+	const suggestionsData = userServices.getSuggestions();
+
 	return (
 		<>
 			<div className='flex flex-row pt-5'>
