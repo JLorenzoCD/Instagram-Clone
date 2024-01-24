@@ -1,4 +1,6 @@
-export const postsData = [
+import { IPostHome } from '../types/post';
+
+export const postsData: IPostHome[] = [
 	{
 		post: {
 			id: 1,
