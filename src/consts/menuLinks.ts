@@ -20,7 +20,7 @@ const lks = {
 		icon: Search,
 	},
 	exploreLink: {
-		to: '#',
+		to: '/explore',
 		text: 'Explorar',
 		icon: Explore,
 	},

@@ -4,6 +4,7 @@ import Menu from './components/Menu';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import Explore from './pages/Explore';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/profile' element={<Profile />} />
+						<Route path='/explore' element={<Explore />} />
 					</Routes>
 				</main>
 			</div>
