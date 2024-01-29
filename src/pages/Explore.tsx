@@ -1,5 +1,11 @@
+import { exploreData } from '../data/explore';
+
 function Explore() {
-	const exploreData = Array.from({ length: 15 }, () => new Array(5).fill('https://picsum.photos/275/385'));
+	const matrixExploreData = [];
+	const COLS = 5;
+	for (let i = 0; i < exploreData.length; i += COLS) {
+		matrixExploreData.push(exploreData.slice(i, i + COLS));
+	}
 
 	return (
 		<section>
@@ -13,31 +19,29 @@ function Explore() {
 					/>
 				</label>{' '}
 			</div>
-			<div>
-				{/* TODO: Tengo que modificar el array para que sea una matriz de 5 columnas */}
-				{!!exploreData &&
-					exploreData.length !== 0 &&
-					exploreData.map((fila, index) => (
-						<>
-							{!!fila && fila.length === 5 && (
-								<div className='grid grid-cols-3 gap-1 mb-1'>
-									<article className={`${index % 2 === 0 ? 'order-2' : ''}`}>
-										{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
-										<img src={fila[0]} className='block h-full w-full object-cover object-center' />
-									</article>
-									<div className='col-span-2 grid grid-cols-2 gap-1'>
-										{fila.splice(1, 5).map((srcImage, index) => (
-											<article key={index}>
-												{/* Este es un cuadrado  que se repite 4 veces */}
-												<img src={srcImage} className='block h-full w-full object-cover object-center' />
-											</article>
-										))}
-									</div>
+			{/* TODO: Tengo que modificar el array para que sea una matriz de 5 columnas */}
+			{!!matrixExploreData &&
+				!!matrixExploreData.length &&
+				matrixExploreData.map((fila, index) => (
+					<div key={`section-${index}`} className='grid grid-cols-3 gap-1 mb-1 max-h-screen grid-rows-1'>
+						{!!fila && !!fila.length && (
+							<>
+								<article className={`${index % 2 === 0 ? 'order-2' : ''}`}>
+									{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
+									<img src={fila[0]} className='block size-full object-cover object-center' />
+								</article>
+								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
+									{fila.splice(1, 5).map((srcImage, index) => (
+										<article key={srcImage + index}>
+											{/* Este es un cuadrado  que se repite 4 veces */}
+											<img src={srcImage} className='block size-full object-cover object-center' />
+										</article>
+									))}
 								</div>
-							)}
-						</>
-					))}
-			</div>
+							</>
+						)}
+					</div>
+				))}
 		</section>
 	);
 }
