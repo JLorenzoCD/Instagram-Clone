@@ -17,7 +17,7 @@ function Explore() {
 						placeholder='Buscar..'
 						required
 					/>
-				</label>{' '}
+				</label>
 			</div>
 			{/* TODO: Tengo que modificar el array para que sea una matriz de 5 columnas */}
 			{!!matrixExploreData &&
@@ -26,16 +26,13 @@ function Explore() {
 					<div key={`section-${index}`} className='grid grid-cols-3 gap-1 mb-1 max-h-screen grid-rows-1'>
 						{!!fila && !!fila.length && (
 							<>
-								<article className={`${index % 2 === 0 ? 'order-2' : ''}`}>
-									{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
-									<img src={fila[0]} className='block size-full object-cover object-center' />
-								</article>
+								{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
+								<PostExplore className={`${index % 2 === 0 ? 'order-2' : ''}`} srcImage={fila[0]} />
+
 								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
 									{fila.splice(1, 5).map((srcImage, index) => (
-										<article key={srcImage + index}>
-											{/* Este es un cuadrado  que se repite 4 veces */}
-											<img src={srcImage} className='block size-full object-cover object-center' />
-										</article>
+										// Este es un cuadrado  que se repite 4 veces
+										<PostExplore key={srcImage + index} srcImage={srcImage as string} />
 									))}
 								</div>
 							</>
@@ -47,3 +44,19 @@ function Explore() {
 }
 
 export default Explore;
+
+interface PropsPostExplore {
+	className?: string;
+	srcImage: string;
+}
+
+function PostExplore({ className, srcImage }: PropsPostExplore) {
+	/*
+	TODO: Tengo que hacer logica para que si la pantalla es chica valla al path de la publicacion, y en sao de ser pantalla grande me habra un modal
+	*/
+	return (
+		<article className={className}>
+			<img src={srcImage} className='block size-full object-cover object-center' />
+		</article>
+	);
+}
