@@ -1,6 +1,10 @@
+import ModalPost, { useModalPost } from '../components/ModalPost';
+
 import { exploreData } from '../data/explore';
 
 function Explore() {
+	const { showModal, closeModal, openModal } = useModalPost();
+
 	const matrixExploreData = [];
 	const COLS = 5;
 	for (let i = 0; i < exploreData.length; i += COLS) {
@@ -9,6 +13,8 @@ function Explore() {
 
 	return (
 		<section>
+			<ModalPost closeModal={closeModal} showModal={showModal} />
+
 			<div>
 				<label className='block m-2 text-sm font-medium text-gray-900'>
 					<input
@@ -27,12 +33,16 @@ function Explore() {
 						{!!fila && !!fila.length && (
 							<>
 								{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
-								<PostExplore className={`${index % 2 === 0 ? 'order-2' : ''}`} srcImage={fila[0]} />
+								<PostExplore
+									className={`${index % 2 === 0 ? 'order-2' : ''}`}
+									srcImage={fila[0]}
+									openModal={openModal}
+								/>
 
 								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
 									{fila.splice(1, 5).map((srcImage, index) => (
 										// Este es un cuadrado  que se repite 4 veces
-										<PostExplore key={srcImage + index} srcImage={srcImage as string} />
+										<PostExplore key={srcImage + index} srcImage={srcImage as string} openModal={openModal} />
 									))}
 								</div>
 							</>
@@ -48,15 +58,18 @@ export default Explore;
 interface PropsPostExplore {
 	className?: string;
 	srcImage: string;
+	openModal: () => void;
 }
 
-function PostExplore({ className, srcImage }: PropsPostExplore) {
+function PostExplore({ className, srcImage, openModal }: PropsPostExplore) {
 	/*
 	TODO: Tengo que hacer logica para que si la pantalla es chica valla al path de la publicacion, y en sao de ser pantalla grande me habra un modal
 	*/
 	return (
 		<article className={className}>
-			<img src={srcImage} className='block size-full object-cover object-center' />
+			<button className='size-full' onClick={openModal}>
+				<img src={srcImage} className='block size-full object-cover object-center' />
+			</button>
 		</article>
 	);
 }
