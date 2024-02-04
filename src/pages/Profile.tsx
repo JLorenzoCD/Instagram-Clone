@@ -1,7 +1,7 @@
 import UserServices from '../services/user';
 import PostService from '../services/post';
 
-import PostProfile from '../components/PostProfile';
+import PostSoloImage from '../components/PostSoloImage';
 
 import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
@@ -127,7 +127,7 @@ function SectionPostProfile({ userId }: PropsSectionPostProfile) {
 			{data.length !== 0 &&
 				data.map((post) => (
 					<div key={post.id} className='p-px md:px-3'>
-						<PostProfile {...post} />
+						<PostSoloImage data={post} onClick={() => console.log(`click en post con id: ${post.id}`)} />
 					</div>
 				))}
 		</section>

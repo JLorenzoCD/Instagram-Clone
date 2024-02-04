@@ -1,5 +1,7 @@
 import ModalPost, { useModalPost } from '../components/ModalPost';
 
+import PostSoloImage from '../components/PostSoloImage';
+
 import { exploreData } from '../data/explore';
 
 function Explore() {
@@ -25,7 +27,6 @@ function Explore() {
 					/>
 				</label>
 			</div>
-			{/* TODO: Tengo que modificar el array para que sea una matriz de 5 columnas */}
 			{!!matrixExploreData &&
 				!!matrixExploreData.length &&
 				matrixExploreData.map((fila, index) => (
@@ -33,16 +34,20 @@ function Explore() {
 						{!!fila && !!fila.length && (
 							<>
 								{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
-								<PostExplore
-									className={`${index % 2 === 0 ? 'order-2' : ''}`}
-									srcImage={fila[0]}
-									openModal={openModal}
+								<PostSoloImage
+									className={`${index % 2 === 0 ? 'order-2' : ''} size-full`}
+									onClick={openModal}
+									data={{ image: fila[0], comments: 50, likes: 30, time: '', id: 0 }}
 								/>
 
 								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
 									{fila.splice(1, 5).map((srcImage, index) => (
-										// Este es un cuadrado  que se repite 4 veces
-										<PostExplore key={srcImage + index} srcImage={srcImage as string} openModal={openModal} />
+										<PostSoloImage
+											key={srcImage + index}
+											className='size-full'
+											onClick={openModal}
+											data={{ image: srcImage, comments: 50, likes: 30, time: '', id: 0 }}
+										/>
 									))}
 								</div>
 							</>
@@ -54,22 +59,3 @@ function Explore() {
 }
 
 export default Explore;
-
-interface PropsPostExplore {
-	className?: string;
-	srcImage: string;
-	openModal: () => void;
-}
-
-function PostExplore({ className, srcImage, openModal }: PropsPostExplore) {
-	/*
-	TODO: Tengo que hacer logica para que si la pantalla es chica valla al path de la publicacion, y en sao de ser pantalla grande me habra un modal
-	*/
-	return (
-		<article className={className}>
-			<button className='size-full' onClick={openModal}>
-				<img src={srcImage} className='block size-full object-cover object-center' />
-			</button>
-		</article>
-	);
-}

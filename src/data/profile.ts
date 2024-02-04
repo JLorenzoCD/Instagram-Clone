@@ -1,8 +1,9 @@
-export const profilePostData = [
+import type { IPostSoloImage } from '../types/post';
+
+export const profilePostData: IPostSoloImage[] = [
 	{
 		id: 1,
 		image: 'https://picsum.photos/275/385',
-		alt: 'image',
 		likes: 50,
 		comments: 30,
 		time: '2023-12-26T10:30:00Z',
@@ -10,7 +11,6 @@ export const profilePostData = [
 	{
 		id: 2,
 		image: 'https://picsum.photos/275/385',
-		alt: 'image',
 		likes: 25,
 		comments: 15,
 		time: '2023-12-25T08:15:00Z',
@@ -18,7 +18,6 @@ export const profilePostData = [
 	{
 		id: 3,
 		image: 'https://picsum.photos/275/385',
-		alt: 'image',
 		likes: 70,
 		comments: 40,
 		time: '2023-12-24T15:45:00Z',
@@ -26,7 +25,6 @@ export const profilePostData = [
 	{
 		id: 4,
 		image: 'https://picsum.photos/275/385',
-		alt: 'image',
 		likes: 15,
 		comments: 10,
 		time: '2023-12-23T12:00:00Z',
@@ -34,7 +32,6 @@ export const profilePostData = [
 	{
 		id: 5,
 		image: 'https://picsum.photos/275/385',
-		alt: 'image',
 		likes: 35,
 		comments: 20,
 		time: '2023-12-22T18:30:00Z',

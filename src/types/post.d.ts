@@ -32,10 +32,9 @@ export type IPostHome = {
 	};
 };
 
-export type IPostProfile = {
+export type IPostSoloImage = {
 	id: number;
 	image: string;
-	alt: string;
 	likes: number;
 	comments: number;
 	time: string;
