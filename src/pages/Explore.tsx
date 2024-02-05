@@ -1,4 +1,5 @@
-import ModalPost, { useModalPost } from '../components/ModalPost';
+import { useModalPost } from '../hooks/useModalPost';
+import ModalPost from '../components/ModalPost';
 
 import PostSoloImage from '../components/PostSoloImage';
 

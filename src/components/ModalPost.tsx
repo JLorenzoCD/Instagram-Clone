@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Close from './icons/Close';
 
 import Modal from './Modal';
@@ -83,13 +81,4 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 			</div>
 		</Modal>
 	);
-}
-
-export function useModalPost() {
-	const [showModal, setShowModal] = useState(false);
-
-	const openModal = () => setShowModal(true);
-	const closeModal = () => setShowModal(false);
-
-	return { showModal, openModal, closeModal };
 }
