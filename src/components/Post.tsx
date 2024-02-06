@@ -8,6 +8,7 @@ import SkeletonImage from './skeleton/Image';
 import SkeletonProfile from './skeleton/Profile';
 
 import { getTimeAgo } from '../utilities/time';
+import Comment from './Comment';
 
 interface Props {
 	post: {
@@ -89,15 +90,11 @@ export default function Post({ post, me }: Props) {
 					<div className='text-gray-500 text-sm'>View all {post.numberComments} comments</div>
 				)}
 				{!!me.comment && me.comment.trim().length !== 0 ? (
-					<div className='text-sm'>
-						<span className='font-semibold'>Me </span> {me.comment}
-					</div>
+					<Comment data={{ username: 'Me', comment: me.comment }} />
 				) : (
 					<>
 						{!!post.mainComment && post.mainComment.comment.trim().length !== 0 && (
-							<div className='text-sm'>
-								<span className='font-semibold'>{post.mainComment.username} </span> {post.mainComment.comment}
-							</div>
+							<Comment data={{ username: post.mainComment.username, comment: post.mainComment.comment }} />
 						)}
 					</>
 				)}
