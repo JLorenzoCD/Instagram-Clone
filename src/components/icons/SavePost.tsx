@@ -1,5 +1,5 @@
 interface Props {
-	saved: boolean;
+	saved?: boolean;
 }
 
 function SavePost({ saved }: Props) {
