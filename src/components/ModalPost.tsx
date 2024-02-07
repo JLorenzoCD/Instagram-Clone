@@ -1,6 +1,16 @@
 import Close from './icons/Close';
+import Options from './icons/Options';
+import Heart from './icons/Heart';
+import Message from './icons/Message';
+import Share from './icons/Share';
+import SavePost from './icons/SavePost';
+
+import SkeletonProfile from './skeleton/Profile';
 
 import Modal from './Modal';
+import Comment from './Comment';
+
+import { getTimeAgo } from '../utilities/time';
 
 interface Props {
 	showModal: boolean;
@@ -15,13 +25,12 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 			follow: false,
 		},
 		post: {
-			time: '',
+			image: 'https://picsum.photos/275/385',
+			time: '2023-12-26T10:30:00Z',
 			description: '',
-			comments: [{ time: '', username: '', text: '' }],
+			comments: [{ time: '2023-12-30T10:30:00Z', username: '', text: '' }],
 		},
 	};
-
-	console.log(modalPostData);
 
 	return (
 		<Modal>
@@ -29,52 +38,78 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 				aria-hidden={`${showModal}`}
 				className={`${
 					showModal ? '' : 'hidden'
-				} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center w-full md:inset-0 max-h-full bg-black/50`}
+				} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center w-full md:inset-0 max-h-full bg-black/50 p-4`}
 				onClick={closeModal}
 			>
-				<div className='w-full max-w-2xl max-h-full' onClick={(e) => e.stopPropagation()}>
-					{/* Modal content */}
-					<div className='bg-white rounded-lg shadow relative'>
-						{/* Modal header */}
-						<div className='flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600'>
-							<h3 className='text-xl font-semibold text-gray-90'>Terms of Service</h3>
-							<button
-								type='button'
-								className='text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center'
-								onClick={closeModal}
-								title='Close modal'
-							>
-								<Close />
-							</button>
+				<div className='w-full max-w-5xl max-h-full overflow-hidden' onClick={(e) => e.stopPropagation()}>
+					<div className='bg-white rounded-lg shadow flex'>
+						<div className='basis-1/2'>
+							<img src={modalPostData.post.image} className='size-full object-cover max-h-[90vh]' />
 						</div>
-						{/* Modal body */}
-						<div className='p-4 md:p-5 space-y-4'>
-							<p className='text-base leading-relaxed text-gray-500'>
-								With less than a month to go before the European Union enacts new consumer privacy laws for its
-								citizens, companies around the world are updating their terms of service agreements to comply.
-							</p>
-							<p className='text-base leading-relaxed text-gray-500'>
-								The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is
-								meant to ensure a common set of data rights in the European Union. It requires organizations to notify
-								users as soon as possible of high-risk data breaches that could personally affect them.
-							</p>
-						</div>
-						{/* Modal footer */}
-						<div className='flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b'>
-							<button
-								type='button'
-								className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
-								onClick={closeModal}
-							>
-								I accept
-							</button>
-							<button
-								type='button'
-								className='ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10'
-								onClick={closeModal}
-							>
-								Decline
-							</button>
+						<div className='basis-1/2 flex flex-col'>
+							<div className='flex-1'>
+								<header className='flex justify-between p-3 border-b border-b-gray-300'>
+									<div className='flex items-center'>
+										<div className='w-10 h-10 mr-4'>
+											{/* <img src={data.userPicture} className='rounded-full' /> */}
+											<SkeletonProfile className='size-full' />
+										</div>
+										<div className='col-span-4 text-sm font-semibold'>
+											{modalPostData.user.name} •{' '}
+											<span className='text-gray-400 text-xs'>{getTimeAgo(modalPostData.post.time)}</span>
+											{!modalPostData.user.follow && (
+												<>
+													{''} • <span className='text-blue-500 text-xs'>Folow</span>
+												</>
+											)}
+										</div>
+									</div>
+
+									<div className='flex justify-center items-center'>
+										<Options />
+										<button
+											type='button'
+											className='text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm size-8 ms-auto inline-flex justify-center items-center'
+											onClick={closeModal}
+											title='Close modal'
+										>
+											<Close />
+										</button>
+									</div>
+								</header>
+
+								<section>
+									<Comment data={{ username: 'Me', comment: 'Explorando nuevas aventuras ⛰️🌲' }} full />
+									<Comment
+										data={{
+											username: 'Jack',
+											comment:
+												'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleifend nunc pellentesque erat varius laoreet. Mauris placerat nulla a tellus dictum, a ornare lacus rutrum. Curabitur accumsan magna vitae orci mattis vestibulum. ',
+										}}
+										full
+									/>
+								</section>
+							</div>
+
+							<div className='p-2'>
+								<div className='flex flex-row gap-3'>
+									<Heart />
+									<Message />
+									<Share />
+									<SavePost />
+								</div>
+								<p className='text-sm text-black font-black'>87.336 Likes</p>
+								<p className='text-sm text-gray-600'>{modalPostData.post.time}</p>
+
+								<div className='flex items-center mt-3'>
+									<SkeletonProfile className='size-7 mr-2' />
+									<input
+										type='text'
+										className=' text-gray-900 text-sm focus:outline-0 block w-full py-2'
+										placeholder='Add a comment...'
+									/>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
