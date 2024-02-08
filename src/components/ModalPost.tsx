@@ -42,15 +42,15 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 											{/* <img src={data.userPicture} className='rounded-full' /> */}
 											<SkeletonProfile className='size-full' />
 										</div>
-										<div className='col-span-4 text-sm font-semibold'>
-											{modalPostData.user.name} •{' '}
-											<span className='text-gray-400 text-xs'>{getTimeAgo(modalPostData.post.time)}</span>
+										<p className='col-span-4 text-sm font-semibold'>
+											{modalPostData.user.name}
 											{!modalPostData.user.follow && (
 												<>
-													{''} • <span className='text-blue-500 text-xs'>Folow</span>
+													{' '}
+													• <span className='text-blue-500 text-xs'>Folow</span>
 												</>
 											)}
-										</div>
+										</p>
 									</div>
 
 									<div className='flex justify-center items-center'>
@@ -67,27 +67,22 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 								</header>
 
 								<section>
-									<Comment data={{ username: 'Me', comment: 'Explorando nuevas aventuras ⛰️🌲' }} full />
-									<Comment
-										data={{
-											username: 'Jack',
-											comment:
-												'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleifend nunc pellentesque erat varius laoreet. Mauris placerat nulla a tellus dictum, a ornare lacus rutrum. Curabitur accumsan magna vitae orci mattis vestibulum. ',
-										}}
-										full
-									/>
+									{!!modalPostData.post.comments.length &&
+										modalPostData.post.comments.map((comment) => <Comment key={comment.id} data={comment} full />)}
 								</section>
 							</div>
 
-							<div className='p-2'>
+							<div className='p-4'>
 								<div className='flex flex-row gap-3'>
-									<Heart />
+									<Heart liked={modalPostData.post.liked} />
 									<Message />
 									<Share />
-									<SavePost />
+									<SavePost saved={modalPostData.post.saved} />
 								</div>
-								<p className='text-sm text-black font-black'>87.336 Likes</p>
-								<p className='text-sm text-gray-600'>{modalPostData.post.time}</p>
+								<p className='text-sm text-black font-black'>
+									{modalPostData.post.likes.toLocaleString('es-AR')} Likes
+								</p>
+								<p className='text-sm text-gray-600'>Hace {getTimeAgo(modalPostData.post.time)}</p>
 
 								<div className='flex items-center mt-3'>
 									<SkeletonProfile className='size-7 mr-2' />
