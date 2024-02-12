@@ -1,5 +1,4 @@
-import { postsData } from '../../data/post';
-import { profilePostData } from '../../data/profile';
+import { postsData, profilePostData } from '../../data/post';
 
 export default class PostModel {
 	getHome(currentUserId: number) {

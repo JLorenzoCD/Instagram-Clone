@@ -1,5 +1,5 @@
 export type IPost = {
-	id: number;
+	id: number | string;
 
 	user: {
 		name: string;
@@ -33,7 +33,7 @@ export type IPostHome = {
 };
 
 export type IPostSoloImage = {
-	id: number;
+	id: number | string;
 	image: string;
 	likes: number;
 	comments: number;
