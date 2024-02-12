@@ -1,10 +1,13 @@
 import { useState } from 'react';
 
 export function useModalPost() {
-	const [showModal, setShowModal] = useState(false);
+	const [modalData, setModalData] = useState<{
+		show: boolean;
+		postId: null | number | string;
+	}>({ show: false, postId: null });
 
-	const openModal = () => setShowModal(true);
-	const closeModal = () => setShowModal(false);
+	const openModal = (postId: number | string) => setModalData({ show: true, postId });
+	const closeModal = () => setModalData({ show: false, postId: null });
 
-	return { showModal, openModal, closeModal };
+	return { modalData, openModal, closeModal };
 }

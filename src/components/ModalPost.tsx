@@ -12,20 +12,27 @@ import Comment from './Comment';
 
 import { getTimeAgo } from '../utilities/time';
 
-import { modalPostData } from '../data/modalPost';
+import { modalPostData } from '../data/post';
 
 interface Props {
-	showModal: boolean;
+	modalData: {
+		show: boolean;
+		postId: null | number | string;
+	};
 	closeModal: () => void;
 }
 
-export default function ModalPost({ showModal, closeModal }: Props) {
+export default function ModalPost({ modalData, closeModal }: Props) {
+	if (!modalData.show) return null;
+
+	console.log(modalData.postId);
+
 	return (
 		<Modal>
 			<div
-				aria-hidden={`${showModal}`}
+				aria-hidden={`${modalData.show}`}
 				className={`${
-					showModal ? '' : 'hidden'
+					modalData.show ? '' : 'hidden'
 				} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center w-full md:inset-0 max-h-full bg-black/50 p-4`}
 				onClick={closeModal}
 			>
@@ -88,6 +95,7 @@ export default function ModalPost({ showModal, closeModal }: Props) {
 									<SkeletonProfile className='size-7 mr-2' />
 									<input
 										type='text'
+										name='addComment'
 										className=' text-gray-900 text-sm focus:outline-0 block w-full py-2'
 										placeholder='Add a comment...'
 									/>
