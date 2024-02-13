@@ -1,13 +1,18 @@
+import { useModalPost } from '../hooks/useModalPost';
+
 import UserServices from '../services/user';
 import PostService from '../services/post';
 
 import PostSoloImage from '../components/PostSoloImage';
+import ModalPost from '../components/ModalPost';
 
 import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
 import Tagged from '../components/icons/Tagged';
 
 function Profile() {
+	const { modalData, closeModal, openModal } = useModalPost();
+
 	const currentUserId = 1;
 
 	const userService = new UserServices();
@@ -15,6 +20,8 @@ function Profile() {
 
 	return (
 		<>
+			<ModalPost closeModal={closeModal} modalData={modalData} />
+
 			<div className='lg:w-10/12 lg:mx-auto mb-8'>
 				<header className='flex flex-wrap items-center p-4 md:py-8'>
 					<div className='md:w-3/12 md:ml-16'>
@@ -106,7 +113,7 @@ function Profile() {
 						</li>
 					</ul>
 
-					<SectionPostProfile userId={data.id} />
+					<SectionPostProfile userId={data.id} openModal={openModal} />
 				</div>
 			</div>
 		</>
@@ -117,8 +124,9 @@ export default Profile;
 
 interface PropsSectionPostProfile {
 	userId: number;
+	openModal: (postId: string | number) => void;
 }
-function SectionPostProfile({ userId }: PropsSectionPostProfile) {
+function SectionPostProfile({ userId, openModal }: PropsSectionPostProfile) {
 	const postService = new PostService();
 	const data = postService.getProfile(userId);
 
@@ -127,7 +135,7 @@ function SectionPostProfile({ userId }: PropsSectionPostProfile) {
 			{data.length !== 0 &&
 				data.map((post) => (
 					<div key={post.id} className='p-px md:px-3'>
-						<PostSoloImage data={post} onClick={() => console.log(`click en post con id: ${post.id}`)} />
+						<PostSoloImage data={post} onClick={() => openModal(post.id)} />
 					</div>
 				))}
 		</section>
