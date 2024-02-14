@@ -1,12 +1,15 @@
 import { useModalPost } from '../hooks/useModalPost';
+
+import PostService from '../services/post';
+
 import ModalPost from '../components/ModalPost';
-
 import PostSoloImage from '../components/PostSoloImage';
-
-import { explorePostData } from '../data/post';
 
 function Explore() {
 	const { modalData, closeModal, openModal } = useModalPost();
+
+	const postService = new PostService();
+	const explorePostData = postService.getExplore();
 
 	const matrixExploreData = [];
 	const COLS = 5;
