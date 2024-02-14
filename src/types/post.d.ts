@@ -1,5 +1,7 @@
+import type { EntityID } from './entity';
+
 export type IPost = {
-	id: number | string;
+	id: EntityID;
 
 	user: {
 		name: string;
@@ -33,7 +35,7 @@ export type IPostHome = {
 };
 
 export type IPostSoloImage = {
-	id: number | string;
+	id: EntityID;
 	image: string;
 	likes: number;
 	comments: number;
