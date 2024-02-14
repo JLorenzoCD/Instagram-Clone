@@ -13,6 +13,12 @@ export default class PostService {
 	getProfile(userId: number) {
 		return this.postModel.getProfile(userId);
 	}
+	getExplore() {
+		const currentUserId = 1;
+
+		return this.postModel.getExplore(currentUserId);
+	}
+
 	store(data: IPostToStore) {
 		console.log(`Se crea un post con los siguientes datos: ${data}`);
 	}

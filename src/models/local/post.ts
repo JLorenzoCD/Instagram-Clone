@@ -1,4 +1,4 @@
-import { postsData, profilePostData } from '../../data/post';
+import { explorePostData, postsData, profilePostData } from '../../data/post';
 
 export default class PostModel {
 	getHome(currentUserId: number) {
@@ -10,5 +10,11 @@ export default class PostModel {
 		console.log(`Obteninendo los post del perfil del usuario con id: ${userId}`);
 
 		return profilePostData;
+	}
+
+	getExplore(userId: number) {
+		console.log(`Obteninendo los post del perfil del usuario con id: ${userId}`);
+
+		return explorePostData;
 	}
 }
