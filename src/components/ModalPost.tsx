@@ -1,3 +1,5 @@
+import PostService from '../services/post';
+
 import Close from './icons/Close';
 import Options from './icons/Options';
 import Heart from './icons/Heart';
@@ -12,12 +14,12 @@ import Comment from './Comment';
 
 import { getTimeAgo } from '../utilities/time';
 
-import { modalPostData } from '../data/post';
+import type { EntityID } from '../types/entity';
 
 interface Props {
 	modalData: {
 		show: boolean;
-		postId: null | number | string;
+		postId: null | EntityID;
 	};
 	closeModal: () => void;
 }
@@ -26,6 +28,9 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 	if (!modalData.show) return null;
 
 	console.log(modalData.postId);
+
+	const postService = new PostService();
+	const modalPostData = postService.getInfoLargeScreen(modalData.postId as EntityID);
 
 	return (
 		<Modal>
