@@ -1,5 +1,7 @@
 import UserModel from '../models/local/user';
 
+import type { EntityID } from '../types/entity';
+
 export default class UserServices {
 	userModel = new UserModel();
 
@@ -14,7 +16,7 @@ export default class UserServices {
 		return this.userModel.getCurrentUserData(currentUserId);
 	}
 
-	getProfileData(userId: number) {
+	getProfileData(userId: EntityID) {
 		return this.userModel.getProfileData(userId);
 	}
 
