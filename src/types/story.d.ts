@@ -1,3 +1,3 @@
-import type { EntityID } from './entity';
+import type { IEntityID } from './entity';
 
-export type IStory = { id: EntityID; profile: string; username: string };
+export type IStory = { id: IEntityID; profile: string; username: string };

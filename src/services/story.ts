@@ -3,15 +3,15 @@ import StoryModel from '../models/local/story';
 export default class StoryService {
 	sotryModel = new StoryModel();
 
-	getAll() {
+	async getAll() {
 		const currentUserId = 1;
 
-		return this.sotryModel.getAll(currentUserId);
+		return await this.sotryModel.getAll(currentUserId);
 	}
 
-	getUserStories() {
+	async getUserStories() {
 		const currentUserId = 1;
 
-		return this.sotryModel.getStories(currentUserId);
+		return await this.sotryModel.getStories(currentUserId);
 	}
 }

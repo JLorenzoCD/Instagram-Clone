@@ -1,28 +1,28 @@
 import UserModel from '../models/local/user';
 
-import type { EntityID } from '../types/entity';
+import type { IEntityID } from '../types/entity';
 
 export default class UserServices {
 	userModel = new UserModel();
 
-	logIn() {}
-	logUp() {}
-	logOut() {
+	async logIn() {}
+	async logUp() {}
+	async logOut() {
 		console.log('Cerrando secion');
 	}
-	getCurrentUserData() {
+	async getCurrentUserData() {
 		const currentUserId = 1;
 
-		return this.userModel.getCurrentUserData(currentUserId);
+		return await this.userModel.getCurrentUserData(currentUserId);
 	}
 
-	getProfileData(userId: EntityID) {
-		return this.userModel.getProfileData(userId);
+	async getProfileData(userId: IEntityID) {
+		return await this.userModel.getProfileData(userId);
 	}
 
-	getSuggestions() {
+	async getSuggestions() {
 		const currentUserId = 1;
 
-		return this.userModel.getSuggestions(currentUserId);
+		return await this.userModel.getSuggestions(currentUserId);
 	}
 }

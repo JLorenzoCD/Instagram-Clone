@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { useModalPost } from '../hooks/useModalPost';
 
 import UserServices from '../services/user';
@@ -10,17 +12,28 @@ import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
 import Tagged from '../components/icons/Tagged';
 
+import { IPostSoloImage } from '../types/post';
+
 function Profile() {
 	const { modalData, closeModal, openModal } = useModalPost();
 
+	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);
+
 	const currentUserId = 1;
 
-	const userService = new UserServices();
-	const data = userService.getProfileData(currentUserId);
+	useEffect(() => {
+		const userService = new UserServices();
+
+		(async () => {
+			setData(await userService.getProfileData(currentUserId));
+		})();
+	}, []);
+
+	if (data === undefined) return null;
 
 	return (
 		<>
-			<ModalPost closeModal={closeModal} modalData={modalData} />
+			{modalData.show && <ModalPost closeModal={closeModal} modalData={modalData} />}
 
 			<div className='lg:w-10/12 lg:mx-auto mb-8'>
 				<header className='flex flex-wrap items-center p-4 md:py-8'>
@@ -113,7 +126,7 @@ function Profile() {
 						</li>
 					</ul>
 
-					<SectionPostProfile userId={data.id} openModal={openModal} />
+					{data !== undefined && <SectionPostProfile userId={data.id} openModal={openModal} />}
 				</div>
 			</div>
 		</>
@@ -127,12 +140,19 @@ interface PropsSectionPostProfile {
 	openModal: (postId: string | number) => void;
 }
 function SectionPostProfile({ userId, openModal }: PropsSectionPostProfile) {
-	const postService = new PostService();
-	const data = postService.getProfile(userId);
+	const [data, setData] = useState<undefined | IPostSoloImage[]>(undefined);
+
+	useEffect(() => {
+		const postService = new PostService();
+
+		(async () => {
+			setData(await postService.getProfile(userId));
+		})();
+	}, [userId]);
 
 	return (
 		<section className='grid gap-1 grid-cols-3 -mx-px md:-mx-3'>
-			{data.length !== 0 &&
+			{data !== undefined &&
 				data.map((post) => (
 					<div key={post.id} className='p-px md:px-3'>
 						<PostSoloImage data={post} onClick={() => openModal(post.id)} />
@@ -141,3 +161,13 @@ function SectionPostProfile({ userId, openModal }: PropsSectionPostProfile) {
 		</section>
 	);
 }
+
+type ICurrentUserProfile = {
+	id: number;
+	profileImage: string;
+	username: string;
+	numberPost: number;
+	numberFollowers: number;
+	numberFollowing: number;
+	description: string;
+};

@@ -1,5 +1,7 @@
 import { randomNumber } from './randomNumber';
 
+import type { IPostSoloImage } from '../types/post';
+
 export function generatePostImage(n: number) {
 	return new Array(n).fill(0).map(() => ({
 		id: crypto.randomUUID(),
@@ -7,5 +9,5 @@ export function generatePostImage(n: number) {
 		likes: randomNumber(5000),
 		comments: randomNumber(500),
 		time: '2023-12-26T10:30:00Z',
-	}));
+	})) as IPostSoloImage[];
 }

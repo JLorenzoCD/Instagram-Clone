@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { useModalPost } from '../hooks/useModalPost';
 
 import PostService from '../services/post';
@@ -5,21 +7,32 @@ import PostService from '../services/post';
 import ModalPost from '../components/ModalPost';
 import PostSoloImage from '../components/PostSoloImage';
 
+import { IPostSoloImage } from '../types/post';
+
 function Explore() {
 	const { modalData, closeModal, openModal } = useModalPost();
 
-	const postService = new PostService();
-	const explorePostData = postService.getExplore();
+	const [matrixExploreData, setMatrizExploreData] = useState<undefined | IPostSoloImage[][]>(undefined);
 
-	const matrixExploreData = [];
-	const COLS = 5;
-	for (let i = 0; i < explorePostData.length; i += COLS) {
-		matrixExploreData.push(explorePostData.slice(i, i + COLS));
-	}
+	useEffect(() => {
+		const postService = new PostService();
+
+		(async () => {
+			const explorePostData = await postService.getExplore();
+
+			const data = [];
+			const COLS = 5;
+			for (let i = 0; i < explorePostData.length; i += COLS) {
+				data.push(explorePostData.slice(i, i + COLS));
+			}
+
+			setMatrizExploreData(data);
+		})();
+	}, []);
 
 	return (
 		<section>
-			<ModalPost closeModal={closeModal} modalData={modalData} />
+			{modalData.show && <ModalPost closeModal={closeModal} modalData={modalData} />}
 
 			<div>
 				<label className='block m-2 text-sm font-medium text-gray-900'>
@@ -32,7 +45,7 @@ function Explore() {
 					/>
 				</label>
 			</div>
-			{!!matrixExploreData &&
+			{matrixExploreData !== undefined &&
 				!!matrixExploreData.length &&
 				matrixExploreData.map((fila, index) => (
 					<div key={`section-${index}-${fila[0].id}`} className='grid grid-cols-3 gap-1 mb-1 max-h-screen grid-rows-1'>
@@ -46,9 +59,17 @@ function Explore() {
 								/>
 
 								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
-									{fila.splice(1, 5).map((post) => (
-										<PostSoloImage key={post.id} className='size-full' onClick={() => openModal(post.id)} data={post} />
-									))}
+									{fila.map((post, index) => {
+										if (index)
+											return (
+												<PostSoloImage
+													key={post.id}
+													className='size-full'
+													onClick={() => openModal(post.id)}
+													data={post}
+												/>
+											);
+									})}
 								</div>
 							</>
 						)}

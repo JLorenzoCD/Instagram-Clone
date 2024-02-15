@@ -18,6 +18,16 @@ export default function Comment({ data, full }: Props) {
 			</div>
 		);
 
+	// TODO
+	const commnetData = {
+		time: '2023-12-26T10:30:00Z',
+		liked: false,
+		user: {
+			username: '',
+			avatar: '',
+		},
+	};
+
 	return (
 		<div className='text-sm flex p-2 justify-between items-center'>
 			<div className='flex'>
@@ -27,7 +37,7 @@ export default function Comment({ data, full }: Props) {
 				<div>
 					<span className='font-semibold'>
 						{data.username}
-						<span className='ml-2 text-gray-400 text-sm'>{getTimeAgo('2023-12-26T10:30:00Z')}</span>
+						<span className='ml-2 text-gray-400 text-sm'>{getTimeAgo(commnetData.time)}</span>
 					</span>
 					<p>{data.comment}</p>
 				</div>

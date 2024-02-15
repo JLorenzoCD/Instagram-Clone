@@ -1,1 +1,1 @@
-export type EntityID = string | number;
+export type IEntityID = string | number;

@@ -14,10 +14,12 @@ function Stories() {
 	useEffect(() => {
 		const storyServices = new StoryService();
 
-		setStoriesData({
-			user: storyServices.getUserStories(),
-			stories: storyServices.getAll(),
-		});
+		(async () => {
+			setStoriesData({
+				user: await storyServices.getUserStories(),
+				stories: await storyServices.getAll(),
+			});
+		})();
 	}, []);
 
 	return (

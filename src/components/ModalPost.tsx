@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import PostService from '../services/post';
 
 import Close from './icons/Close';
@@ -14,23 +16,30 @@ import Comment from './Comment';
 
 import { getTimeAgo } from '../utilities/time';
 
-import type { EntityID } from '../types/entity';
+import type { IEntityID } from '../types/entity';
 
 interface Props {
 	modalData: {
 		show: boolean;
-		postId: null | EntityID;
+		postId: null | IEntityID;
 	};
 	closeModal: () => void;
 }
 
 export default function ModalPost({ modalData, closeModal }: Props) {
-	if (!modalData.show) return null;
+	const [modalPostData, setModalPostData] = useState<undefined | ModalPostData>(undefined);
+
+	useEffect(() => {
+		const postService = new PostService();
+
+		(async () => {
+			setModalPostData(await postService.getInfoLargeScreen(modalData.postId as IEntityID));
+		})();
+	}, [modalData.postId]);
+
+	if (!modalData.show || modalPostData === undefined) return null;
 
 	console.log(modalData.postId);
-
-	const postService = new PostService();
-	const modalPostData = postService.getInfoLargeScreen(modalData.postId as EntityID);
 
 	return (
 		<Modal>
@@ -113,3 +122,25 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 		</Modal>
 	);
 }
+
+type ModalPostData = {
+	user: {
+		name: string;
+		picture: string;
+		follow: boolean;
+	};
+	post: {
+		image: string;
+		time: string;
+		likes: number;
+		liked: boolean;
+		saved: boolean;
+		description: string;
+		comments: {
+			id: number;
+			time: string;
+			username: string;
+			comment: string;
+		}[];
+	};
+};

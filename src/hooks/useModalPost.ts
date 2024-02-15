@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import type { EntityID } from '../types/entity';
+import type { IEntityID } from '../types/entity';
 
 export function useModalPost() {
 	const [modalData, setModalData] = useState<{
 		show: boolean;
-		postId: null | EntityID;
+		postId: null | IEntityID;
 	}>({ show: false, postId: null });
 
-	const openModal = (postId: EntityID) => setModalData({ show: true, postId });
+	const openModal = (postId: IEntityID) => setModalData({ show: true, postId });
 	const closeModal = () => setModalData({ show: false, postId: null });
 
 	return { modalData, openModal, closeModal };
