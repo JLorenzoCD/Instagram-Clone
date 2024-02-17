@@ -100,6 +100,7 @@ export default function Post({ post, me }: Props) {
 				)}
 
 				<input
+					name='addComment'
 					type='text'
 					className=' text-gray-900 text-sm focus:outline-0 block w-full py-2'
 					placeholder='Add a comment...'

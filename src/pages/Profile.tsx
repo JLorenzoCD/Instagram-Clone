@@ -6,7 +6,6 @@ import UserServices from '../services/user';
 import PostService from '../services/post';
 
 import PostSoloImage from '../components/PostSoloImage';
-import ModalPost from '../components/ModalPost';
 
 import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
@@ -15,7 +14,7 @@ import Tagged from '../components/icons/Tagged';
 import { IPostSoloImage } from '../types/post';
 
 function Profile() {
-	const { modalData, closeModal, openModal } = useModalPost();
+	const { openModal } = useModalPost();
 
 	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);
 
@@ -33,8 +32,6 @@ function Profile() {
 
 	return (
 		<>
-			{modalData.show && <ModalPost closeModal={closeModal} modalData={modalData} />}
-
 			<div className='lg:w-10/12 lg:mx-auto mb-8'>
 				<header className='flex flex-wrap items-center p-4 md:py-8'>
 					<div className='md:w-3/12 md:ml-16'>

@@ -1,10 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Menu from './components/Menu';
+import ModalPostProvider from './context/ModalPostProvider';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Explore from './pages/Explore';
+
+import Menu from './components/Menu';
 
 function App() {
 	return (
@@ -16,8 +18,22 @@ function App() {
 				<main>
 					<Routes>
 						<Route path='/' element={<Home />} />
-						<Route path='/profile' element={<Profile />} />
-						<Route path='/explore' element={<Explore />} />
+						<Route
+							path='/profile'
+							element={
+								<ModalPostProvider>
+									<Profile />
+								</ModalPostProvider>
+							}
+						/>
+						<Route
+							path='/explore'
+							element={
+								<ModalPostProvider>
+									<Explore />
+								</ModalPostProvider>
+							}
+						/>
 					</Routes>
 				</main>
 			</div>

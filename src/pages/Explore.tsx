@@ -4,13 +4,12 @@ import { useModalPost } from '../hooks/useModalPost';
 
 import PostService from '../services/post';
 
-import ModalPost from '../components/ModalPost';
 import PostSoloImage from '../components/PostSoloImage';
 
 import { IPostSoloImage } from '../types/post';
 
 function Explore() {
-	const { modalData, closeModal, openModal } = useModalPost();
+	const { openModal } = useModalPost();
 
 	const [matrixExploreData, setMatrizExploreData] = useState<undefined | IPostSoloImage[][]>(undefined);
 
@@ -32,8 +31,6 @@ function Explore() {
 
 	return (
 		<section>
-			{modalData.show && <ModalPost closeModal={closeModal} modalData={modalData} />}
-
 			<div>
 				<label className='block m-2 text-sm font-medium text-gray-900'>
 					<input
