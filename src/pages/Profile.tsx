@@ -3,20 +3,18 @@ import { useEffect, useState } from 'react';
 import { useModalPost } from '../hooks/useModalPost';
 
 import UserServices from '../services/user';
-import PostService from '../services/post';
-
-import PostSoloImage from '../components/PostSoloImage';
 
 import Posts from '../components/icons/Posts';
 import Reels from '../components/icons/Reels';
 import Tagged from '../components/icons/Tagged';
 
-import { IPostSoloImage } from '../types/post';
+import SectionPostProfile from '../components/SectionPostProfile';
+
+import type { ICurrentUserProfile } from '../types/user';
 
 function Profile() {
-	const { openModal } = useModalPost();
-
 	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);
+	const { openModal } = useModalPost();
 
 	const currentUserId = 1;
 
@@ -131,40 +129,3 @@ function Profile() {
 }
 
 export default Profile;
-
-interface PropsSectionPostProfile {
-	userId: number;
-	openModal: (postId: string | number) => void;
-}
-function SectionPostProfile({ userId, openModal }: PropsSectionPostProfile) {
-	const [data, setData] = useState<undefined | IPostSoloImage[]>(undefined);
-
-	useEffect(() => {
-		const postService = new PostService();
-
-		(async () => {
-			setData(await postService.getProfile(userId));
-		})();
-	}, [userId]);
-
-	return (
-		<section className='grid gap-1 grid-cols-3 -mx-px md:-mx-3'>
-			{data !== undefined &&
-				data.map((post) => (
-					<div key={post.id} className='p-px md:px-3'>
-						<PostSoloImage data={post} onClick={() => openModal(post.id)} />
-					</div>
-				))}
-		</section>
-	);
-}
-
-type ICurrentUserProfile = {
-	id: number;
-	profileImage: string;
-	username: string;
-	numberPost: number;
-	numberFollowers: number;
-	numberFollowing: number;
-	description: string;
-};
