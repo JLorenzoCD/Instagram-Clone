@@ -7,35 +7,17 @@ import Options from './icons/Options';
 import SkeletonImage from './skeleton/Image';
 import SkeletonProfile from './skeleton/Profile';
 
-import { getTimeAgo } from '../utilities/time';
 import Comment from './Comment';
 
-interface Props {
-	post: {
-		user: {
-			name: string;
-			picture: string;
-		};
-		urlImage: string;
-		likes: number;
-		numberComments: number;
-		time: string;
-		description: string;
+import { getTimeAgo } from '../utilities/time';
 
-		mainComment?: {
-			username: string;
-			comment: string;
-		};
-	};
-	me: {
-		followed: boolean;
-		liked: boolean;
-		comment?: string;
-		saved: boolean;
-	};
+import type { IPostHome } from '../types/post';
+
+interface Props {
+	data: IPostHome;
 }
 
-export default function Post({ post, me }: Props) {
+export default function Post({ data: { post, me } }: Props) {
 	const MAX_DESCRIPTION_LEN = 90;
 
 	const description =
