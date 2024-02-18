@@ -17,6 +17,7 @@ import Comment from './Comment';
 import { getTimeAgo } from '../utilities/time';
 
 import type { IEntityID } from '../types/entity';
+import type { IModalPost } from '../types/post';
 
 interface Props {
 	modalData: {
@@ -27,7 +28,7 @@ interface Props {
 }
 
 export default function ModalPost({ modalData, closeModal }: Props) {
-	const [modalPostData, setModalPostData] = useState<undefined | ModalPostData>(undefined);
+	const [modalPostData, setModalPostData] = useState<undefined | IModalPost>(undefined);
 
 	useEffect(() => {
 		const postService = new PostService();
@@ -122,25 +123,3 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 		</Modal>
 	);
 }
-
-type ModalPostData = {
-	user: {
-		name: string;
-		picture: string;
-		follow: boolean;
-	};
-	post: {
-		image: string;
-		time: string;
-		likes: number;
-		liked: boolean;
-		saved: boolean;
-		description: string;
-		comments: {
-			id: number;
-			time: string;
-			username: string;
-			comment: string;
-		}[];
-	};
-};

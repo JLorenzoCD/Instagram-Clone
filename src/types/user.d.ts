@@ -7,6 +7,7 @@ export type IUserSuggestion = {
 };
 
 export type ICurrentUser = {
+	id: IEntityID;
 	image: string;
 	username: string;
 	name: string;

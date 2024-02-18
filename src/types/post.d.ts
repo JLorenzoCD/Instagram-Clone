@@ -41,3 +41,25 @@ export type IPostSoloImage = {
 	comments: number;
 	time: string;
 };
+
+export type IModalPost = {
+	user: {
+		name: string;
+		picture: string;
+		follow: boolean;
+	};
+	post: {
+		image: string;
+		time: string;
+		likes: number;
+		liked: boolean;
+		saved: boolean;
+		description: string;
+		comments: {
+			id: number;
+			time: string;
+			username: string;
+			comment: string;
+		}[];
+	};
+};

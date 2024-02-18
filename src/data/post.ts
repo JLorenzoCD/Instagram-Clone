@@ -1,4 +1,4 @@
-import type { IPostHome, IPostSoloImage } from '../types/post';
+import type { IModalPost, IPostHome, IPostSoloImage } from '../types/post';
 
 import { generatePostImage } from '../utilities/myFaker';
 
@@ -80,7 +80,7 @@ export const profilePostData: IPostSoloImage[] = generatePostImage(5);
 const TOTAL_SECTIONS = 2;
 export const explorePostData: IPostSoloImage[] = generatePostImage(5 * TOTAL_SECTIONS);
 
-export const modalPostData = {
+export const modalPostData: IModalPost = {
 	user: {
 		name: 'username',
 		picture: '',
