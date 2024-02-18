@@ -6,9 +6,7 @@ import type { IEntityID } from '../types/entity';
 export default class PostService {
 	postModel = new PostModel();
 
-	async getHome() {
-		const currentUserId = 1;
-
+	async getHome(currentUserId: IEntityID) {
 		return await this.postModel.getHome(currentUserId);
 	}
 
@@ -16,9 +14,7 @@ export default class PostService {
 		return await this.postModel.getProfile(userId);
 	}
 
-	async getExplore() {
-		const currentUserId = 1;
-
+	async getExplore(currentUserId: IEntityID) {
 		return await this.postModel.getExplore(currentUserId);
 	}
 

@@ -10,9 +10,8 @@ export default class UserServices {
 	async logOut() {
 		console.log('Cerrando secion');
 	}
-	async getCurrentUserData() {
-		const currentUserId = 1;
 
+	async getCurrentUserData(currentUserId: IEntityID) {
 		return await this.userModel.getCurrentUserData(currentUserId);
 	}
 
@@ -20,9 +19,7 @@ export default class UserServices {
 		return await this.userModel.getProfileData(userId);
 	}
 
-	async getSuggestions() {
-		const currentUserId = 1;
-
+	async getSuggestions(currentUserId: IEntityID) {
 		return await this.userModel.getSuggestions(currentUserId);
 	}
 }
