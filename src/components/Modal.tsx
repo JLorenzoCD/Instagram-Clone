@@ -1,5 +1,9 @@
 import { createPortal } from 'react-dom';
 
-export default function Modal({ children }: { children: JSX.Element | JSX.Element[] }) {
-	return createPortal(<>{children}</>, document.getElementById('portal-modal')!);
+interface Props {
+	children: JSX.Element | JSX.Element[];
+	portalID: string;
+}
+export default function Modal({ children, portalID }: Props) {
+	return createPortal(<>{children}</>, document.getElementById(portalID)!);
 }

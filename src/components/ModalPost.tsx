@@ -42,7 +42,7 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 	console.log(modalData.postId);
 
 	return (
-		<Modal>
+		<Modal portalID='portal-modal'>
 			<div
 				aria-hidden={`${modalData.show}`}
 				className={`${
