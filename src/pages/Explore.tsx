@@ -2,22 +2,26 @@ import { useEffect, useState } from 'react';
 
 import { useModalPost } from '../hooks/useModalPost';
 
+import { useUserStore } from '../store/user';
+
 import PostService from '../services/post';
 
 import PostSoloImage from '../components/PostSoloImage';
 
-import { IPostSoloImage } from '../types/post';
+import type { IPostSoloImage } from '../types/post';
 
 function Explore() {
 	const { openModal } = useModalPost();
 
 	const [matrixExploreData, setMatrizExploreData] = useState<undefined | IPostSoloImage[][]>(undefined);
 
+	const currentUserId = useUserStore((state) => state.currentUser!.id);
+
 	useEffect(() => {
 		const postService = new PostService();
 
 		(async () => {
-			const explorePostData = await postService.getExplore();
+			const explorePostData = await postService.getExplore(currentUserId);
 
 			const data = [];
 			const COLS = 5;
@@ -27,7 +31,7 @@ function Explore() {
 
 			setMatrizExploreData(data);
 		})();
-	}, []);
+	}, [currentUserId]);
 
 	return (
 		<section>

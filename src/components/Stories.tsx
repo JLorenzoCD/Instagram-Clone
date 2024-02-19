@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useUserStore } from '../store/user';
+
 import StoryService from '../services/story';
 
 import SkeletonProfile from './skeleton/Profile';
@@ -11,16 +13,18 @@ function Stories() {
 
 	const [storiesData, setStoriesData] = useState<undefined | { user: IStory; stories: IStory[] }>(undefined);
 
+	const currentUserId = useUserStore((state) => state.currentUser!.id);
+
 	useEffect(() => {
 		const storyServices = new StoryService();
 
 		(async () => {
 			setStoriesData({
-				user: await storyServices.getUserStories(),
-				stories: await storyServices.getAll(),
+				user: await storyServices.getUserStories(currentUserId),
+				stories: await storyServices.getAll(currentUserId),
 			});
 		})();
-	}, []);
+	}, [currentUserId]);
 
 	return (
 		<div className='overflow-hidden max-w-xl mx-auto p-3 mb-5 relative'>

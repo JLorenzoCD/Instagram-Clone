@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useModalPost } from '../hooks/useModalPost';
 
+import { useUserStore } from '../store/user';
+
 import UserServices from '../services/user';
 
 import Posts from '../components/icons/Posts';
@@ -16,7 +18,7 @@ function Profile() {
 	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);
 	const { openModal } = useModalPost();
 
-	const currentUserId = 1;
+	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
 	useEffect(() => {
 		const userService = new UserServices();
@@ -24,7 +26,7 @@ function Profile() {
 		(async () => {
 			setData(await userService.getProfileData(currentUserId));
 		})();
-	}, []);
+	}, [currentUserId]);
 
 	if (data === undefined) return null;
 

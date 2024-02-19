@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useUserStore } from '../store/user';
+
 import UserServices from '../services/user';
 
 import Footer from './../components/Footer';
@@ -13,12 +15,14 @@ import type { ICurrentUser } from '../types/user';
 function Home() {
 	const [data, setData] = useState<undefined | ICurrentUser>(undefined);
 
+	const currentUserId = useUserStore((state) => state.currentUser!.id);
+
 	useEffect(() => {
 		(async () => {
 			const userService = new UserServices();
-			setData(await userService.getCurrentUserData());
+			setData(await userService.getCurrentUserData(currentUserId));
 		})();
-	}, []);
+	}, [currentUserId]);
 
 	if (data === undefined) return null;
 

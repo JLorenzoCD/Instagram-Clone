@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useUserStore } from '../store/user';
+
 import UserServices from '../services/user';
 
 import type { IUserSuggestion } from '../types/user';
@@ -7,13 +9,15 @@ import type { IUserSuggestion } from '../types/user';
 export default function Suggestions() {
 	const [suggestionsData, setModalPostData] = useState<undefined | IUserSuggestion[]>(undefined);
 
+	const currentUserId = useUserStore((state) => state.currentUser!.id);
+
 	useEffect(() => {
 		const userServices = new UserServices();
 
 		(async () => {
-			setModalPostData(await userServices.getSuggestions());
+			setModalPostData(await userServices.getSuggestions(currentUserId));
 		})();
-	}, []);
+	}, [currentUserId]);
 
 	return (
 		<>
