@@ -2,41 +2,48 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import ModalPostProvider from './context/ModalPostProvider';
 
+import Layout from './Layout';
+
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Explore from './pages/Explore';
-
-import Menu from './components/Menu';
+import Login from './pages/Login';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div className='bg-zinc-50 sm:grid sm:grid-cols-[72px_1fr] lg:grid-cols-[300px_1fr]'>
-				<div className='border-r-2'>
-					<Menu />
-				</div>
-				<main>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route
-							path='/profile'
-							element={
-								<ModalPostProvider>
-									<Profile />
-								</ModalPostProvider>
-							}
-						/>
-						<Route
-							path='/explore'
-							element={
-								<ModalPostProvider>
-									<Explore />
-								</ModalPostProvider>
-							}
-						/>
-					</Routes>
-				</main>
-			</div>
+			<Routes>
+				<Route
+					path='/'
+					element={
+						<Layout>
+							<Home />
+						</Layout>
+					}
+				/>
+				<Route
+					path='/profile'
+					element={
+						<Layout>
+							<ModalPostProvider>
+								<Profile />
+							</ModalPostProvider>
+						</Layout>
+					}
+				/>
+				<Route
+					path='/explore'
+					element={
+						<Layout>
+							<ModalPostProvider>
+								<Explore />
+							</ModalPostProvider>
+						</Layout>
+					}
+				/>
+
+				<Route path='/login' element={<Login />} />
+			</Routes>
 		</BrowserRouter>
 	);
 }
