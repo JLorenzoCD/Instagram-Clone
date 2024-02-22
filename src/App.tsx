@@ -7,7 +7,10 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Explore from './pages/Explore';
-import Login from './pages/Login';
+
+import Session from './pages/Session';
+import Login from './pages/Session/Login';
+import Singup from './pages/Session/Singup';
 
 function App() {
 	return (
@@ -42,7 +45,11 @@ function App() {
 					}
 				/>
 
-				<Route path='/login' element={<Login />} />
+				<Route path='/user' element={<Session />}>
+					<Route index element={<Login />} />
+					<Route path='login' element={<Login />} />
+					<Route path='singup' element={<Singup />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);
