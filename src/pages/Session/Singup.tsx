@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import InputSession from '../../components/InputSession';
 import InstagramText from '../../components/icons/InstagramText';
 
+import { SingupSchema } from '../../utilities/schema/sessionSchema';
+
 export default function Singup() {
 	const [formData, setFormData] = useState({ email: '', username: '', password: '', passwordConfirm: '' });
 	// TODO: Mejorar error
@@ -17,9 +19,11 @@ export default function Singup() {
 		setError(false);
 
 		try {
+			SingupSchema.parse(formData);
 			// navigate('/');
 			console.log(formData);
 		} catch (e) {
+			console.error(e);
 			setError(true);
 		}
 	};
@@ -27,7 +31,7 @@ export default function Singup() {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData((prev) => ({
 			...prev,
-			[e.target.name]: e.target.value,
+			[e.target.name]: e.target.value.trim(),
 		}));
 	};
 
@@ -45,7 +49,7 @@ export default function Singup() {
 						onChange={handleChange}
 					/>
 					<InputSession
-						name='email'
+						name='username'
 						placeholder='Username'
 						type='text'
 						value={formData.username}
@@ -67,12 +71,16 @@ export default function Singup() {
 						onChange={handleChange}
 					/>
 
-					<button type='submit' className='text-sm text-center bg-blue-300 text-white py-1 rounded font-medium'>
+					<button
+						type='submit'
+						disabled
+						className='text-sm text-center bg-blue-500 disabled:bg-blue-300 text-white py-1 rounded font-medium'
+					>
 						Sign up
 					</button>
 				</form>
 
-				<div className={`text-sm text-center text-red-500 absolute bottom-20 px-8 ${error ? '' : 'hidden'}`}>
+				<div className={`text-sm text-center text-red-500 px-8 ${error ? '' : 'hidden'}`}>
 					Sorry, your email/password was incorrect. Please double-check and try again.
 				</div>
 			</div>

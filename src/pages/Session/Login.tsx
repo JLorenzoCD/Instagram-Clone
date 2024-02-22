@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 import InstagramText from '../../components/icons/InstagramText';
 import InputSession from '../../components/InputSession';
+import { LoginSchema } from '../../utilities/schema/sessionSchema';
 
 export default function Login() {
-	const [formData, setFormData] = useState({ email: '', password: '' });
+	const [formData, setFormData] = useState({ username: '', password: '' });
 	const [error, setError] = useState(false);
 
 	// const navigate = useNavigate();
@@ -16,9 +17,11 @@ export default function Login() {
 		setError(false);
 
 		try {
+			LoginSchema.parse(formData);
 			// navigate('/');
 			console.log(formData);
 		} catch (e) {
+			console.error(e);
 			setError(true);
 		}
 	};
@@ -26,7 +29,7 @@ export default function Login() {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData((prev) => ({
 			...prev,
-			[e.target.name]: e.target.value,
+			[e.target.name]: e.target.value.trim(),
 		}));
 	};
 
@@ -37,10 +40,10 @@ export default function Login() {
 				<form className='mt-8 w-64 flex flex-col' onSubmit={handleSubmit}>
 					<InputSession
 						autoFocus
-						name='email'
-						placeholder='Phone number, username, or email'
+						name='username'
+						placeholder='Username'
 						type='text'
-						value={formData.email}
+						value={formData.username}
 						onChange={handleChange}
 					/>
 
@@ -52,12 +55,16 @@ export default function Login() {
 						onChange={handleChange}
 					/>
 
-					<button type='submit' className='text-sm text-center bg-blue-300 text-white py-1 rounded font-medium'>
+					<button
+						type='submit'
+						disabled
+						className='text-sm text-center bg-blue-500 disabled:bg-blue-300 text-white py-1 rounded font-medium'
+					>
 						Log In
 					</button>
 				</form>
 
-				<div className={`text-sm text-center text-red-500 absolute bottom-20 px-8 ${error ? '' : 'hidden'}`}>
+				<div className={`text-sm text-center text-red-500 px-8 ${error ? '' : 'hidden'}`}>
 					Sorry, your email/password was incorrect. Please double-check and try again.
 				</div>
 			</div>
