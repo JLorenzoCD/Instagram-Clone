@@ -1,7 +1,7 @@
 import Heart from './icons/Heart';
 import Message from './icons/Message';
 
-import type { IPostSoloImage } from '../types/post';
+import type { IPostSoloImage } from '@/types/post';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	data: IPostSoloImage;

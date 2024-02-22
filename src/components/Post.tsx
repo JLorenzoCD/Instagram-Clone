@@ -9,9 +9,9 @@ import SkeletonProfile from './skeleton/Profile';
 
 import Comment from './Comment';
 
-import { getTimeAgo } from '../utilities/time';
+import { getTimeAgo } from '@/utilities/time';
 
-import type { IPostHome } from '../types/post';
+import type { IPostHome } from '@/types/post';
 
 interface Props {
 	data: IPostHome;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import UserServices from '../services/user';
+import UserServices from '@/services/user';
 
-import type { IUserSuggestion } from '../types/user';
+import type { IUserSuggestion } from '@/types/user';
 
 export default function Suggestions() {
 	const [suggestionsData, setModalPostData] = useState<undefined | IUserSuggestion[]>(undefined);

@@ -1,4 +1,4 @@
-import type { IStory } from '../types/story';
+import type { IStory } from '@/types/story';
 
 export const userStorie: IStory = {
 	id: 1,

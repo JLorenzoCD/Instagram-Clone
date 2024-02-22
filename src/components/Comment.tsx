@@ -1,6 +1,7 @@
-import { getTimeAgo } from '../utilities/time';
 import Heart from './icons/Heart';
 import SkeletonProfile from './skeleton/Profile';
+
+import { getTimeAgo } from '@/utilities/time';
 
 interface Props {
 	full?: boolean;

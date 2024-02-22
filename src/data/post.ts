@@ -1,6 +1,6 @@
-import type { IModalPost, IPostHome, IPostSoloImage } from '../types/post';
+import type { IModalPost, IPostHome, IPostSoloImage } from '@/types/post';
 
-import { generatePostImage } from '../utilities/myFaker';
+import { generatePostImage } from '@/utilities/myFaker';
 
 export const postsData: IPostHome[] = [
 	{

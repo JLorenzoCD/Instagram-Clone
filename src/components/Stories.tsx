@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import StoryService from '../services/story';
+import StoryService from '@/services/story';
 
 import SkeletonProfile from './skeleton/Profile';
 
-import type { IStory } from '../types/story';
+import type { IStory } from '@/types/story';
 
 function Stories() {
 	const { onScroll, scrollLeft, scrollRight, storiesRef, showLeft, showRight } = useScrollX();

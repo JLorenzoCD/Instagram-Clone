@@ -1,6 +1,6 @@
 import { randomNumber } from './randomNumber';
 
-import type { IPostSoloImage } from '../types/post';
+import type { IPostSoloImage } from '@/types/post';
 
 export function generatePostImage(n: number) {
 	return new Array(n).fill(0).map(() => ({

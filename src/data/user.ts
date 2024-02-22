@@ -1,4 +1,4 @@
-import type { ICurrentUser, ICurrentUserProfile, IUserSuggestion } from '../types/user';
+import type { ICurrentUser, ICurrentUserProfile, IUserSuggestion } from '@/types/user';
 
 export const userSuggestions: IUserSuggestion[] = [
 	{

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import PostService from '../services/post';
+import PostService from '@/services/post';
 
 import PostSoloImage from './PostSoloImage';
 
-import type { IPostSoloImage } from '../types/post';
-import type { IEntityID } from '../types/entity';
+import type { IPostSoloImage } from '@/types/post';
+import type { IEntityID } from '@/types/entity';
 
 interface Props {
 	userId: IEntityID;

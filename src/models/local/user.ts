@@ -1,6 +1,6 @@
-import { currentUser, currentUserProfile, userSuggestions } from '../../data/user';
+import { currentUser, currentUserProfile, userSuggestions } from '@/data/user';
 
-import type { IEntityID } from '../../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 export default class UserModel {
 	async getCurrentUserData(currentUserId: IEntityID) {

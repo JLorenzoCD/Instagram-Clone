@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import PostService from '../services/post';
+import PostService from '@/services/post';
 
 import Post from './Post';
 
-import type { IPostHome } from '../types/post';
+import type { IPostHome } from '@/types/post';
 
 export default function SectionPostHome() {
 	const [data, setData] = useState<undefined | IPostHome[]>(undefined);

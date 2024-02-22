@@ -1,6 +1,6 @@
-import UserModel from '../models/local/user';
+import UserModel from '@/models/local/user';
 
-import type { IEntityID } from '../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 export default class UserServices {
 	userModel = new UserModel();

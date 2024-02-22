@@ -1,6 +1,6 @@
-import { explorePostData, modalPostData, postsData, profilePostData } from '../../data/post';
+import { explorePostData, modalPostData, postsData, profilePostData } from '@/data/post';
 
-import type { IEntityID } from '../../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 export default class PostModel {
 	async getHome(currentUserId: IEntityID) {

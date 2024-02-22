@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import UserServices from '../services/user';
+import UserServices from '@/services/user';
 
-import Footer from './../components/Footer';
-import Stories from './../components/Stories';
-import Suggestions from './../components/Suggestions';
+import Footer from '@/components/Footer';
+import Stories from '@/components/Stories';
+import Suggestions from '@/components/Suggestions';
 
-import SectionPostHome from '../components/SectionPostHome';
+import SectionPostHome from '@/components/SectionPostHome';
 
-import type { ICurrentUser } from '../types/user';
+import type { ICurrentUser } from '@/types/user';
 
 function Home() {
 	const [data, setData] = useState<undefined | ICurrentUser>(undefined);

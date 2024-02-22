@@ -1,6 +1,6 @@
-import { storiesData, userStorie } from '../../data/stories';
+import { storiesData, userStorie } from '@/data/stories';
 
-import type { IEntityID } from '../../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 export default class StoryModel {
 	async getAll(userId: IEntityID) {

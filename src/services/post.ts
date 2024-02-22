@@ -1,7 +1,7 @@
-import PostModel from '../models/local/post';
+import PostModel from '@/models/local/post';
 
-import type { IPostToStore, IPostToUpdate } from '../types/post';
-import type { IEntityID } from '../types/entity';
+import type { IPostToStore, IPostToUpdate } from '@/types/post';
+import type { IEntityID } from '@/types/entity';
 
 export default class PostService {
 	postModel = new PostModel();

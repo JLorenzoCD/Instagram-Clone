@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import InputSession from '../../components/InputSession';
-import InstagramText from '../../components/icons/InstagramText';
+import InputSession from '@/components/InputSession';
+import InstagramText from '@/components/icons/InstagramText';
 
-import { SingupSchema } from '../../utilities/schema/sessionSchema';
+import { SingupSchema } from '@/utilities/schema/sessionSchema';
 
 export default function Singup() {
 	const [formData, setFormData] = useState({ email: '', username: '', password: '', passwordConfirm: '' });

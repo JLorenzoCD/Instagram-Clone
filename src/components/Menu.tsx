@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { allLinks, mobileLinks } from '../consts/menuLinks';
+import { allLinks, mobileLinks } from '@/consts/menuLinks';
 
 import InstagramText from './icons/InstagramText';
 import Instagram from './icons/Instagram';

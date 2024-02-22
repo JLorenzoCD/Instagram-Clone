@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { useModalPost } from '../hooks/useModalPost';
+import { useModalPost } from '@/hooks/useModalPost';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import UserServices from '../services/user';
+import UserServices from '@/services/user';
 
-import Posts from '../components/icons/Posts';
-import Reels from '../components/icons/Reels';
-import Tagged from '../components/icons/Tagged';
+import Posts from '@/components/icons/Posts';
+import Reels from '@/components/icons/Reels';
+import Tagged from '@/components/icons/Tagged';
 
-import SectionPostProfile from '../components/SectionPostProfile';
+import SectionPostProfile from '@/components/SectionPostProfile';
 
-import type { ICurrentUserProfile } from '../types/user';
+import type { ICurrentUserProfile } from '@/types/user';
 
 function Profile() {
 	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);

@@ -1,12 +1,12 @@
-import Home from './../components/icons/Home';
-import Search from './../components/icons/Search';
-import Explore from './../components/icons/Explore';
-import Reels from './../components/icons/Reels';
-import Message from './../components/icons/Message';
-import Heart from './../components/icons/Heart';
-import Create from './../components/icons/Create';
-import Config from './../components/icons/Config';
-import SkeletonProfile from './../components/skeleton/Profile';
+import Home from '@/components/icons/Home';
+import Search from '@/components/icons/Search';
+import Explore from '@/components/icons/Explore';
+import Reels from '@/components/icons/Reels';
+import Message from '@/components/icons/Message';
+import Heart from '@/components/icons/Heart';
+import Create from '@/components/icons/Create';
+import Config from '@/components/icons/Config';
+import SkeletonProfile from '@/components/skeleton/Profile';
 
 const lks = {
 	homeLink: {

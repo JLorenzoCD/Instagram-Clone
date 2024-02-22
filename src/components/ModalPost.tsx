@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import PostService from '../services/post';
+import PostService from '@/services/post';
 
 import Close from './icons/Close';
 import Options from './icons/Options';
@@ -14,10 +14,10 @@ import SkeletonProfile from './skeleton/Profile';
 import Modal from './Modal';
 import Comment from './Comment';
 
-import { getTimeAgo } from '../utilities/time';
+import { getTimeAgo } from '@/utilities/time';
 
-import type { IEntityID } from '../types/entity';
-import type { IModalPost } from '../types/post';
+import type { IEntityID } from '@/types/entity';
+import type { IModalPost } from '@/types/post';
 
 interface Props {
 	modalData: {

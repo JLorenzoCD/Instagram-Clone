@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { IEntityID } from '../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 interface IModalPostContext {
 	modalData: {

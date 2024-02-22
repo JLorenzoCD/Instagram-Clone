@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { ModalPostContext } from './ModalPostContext';
 
-import ModalPost from '../components/ModalPost';
+import ModalPost from '@/components/ModalPost';
 
-import type { IEntityID } from '../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 interface Props {
 	children: JSX.Element | JSX.Element[];

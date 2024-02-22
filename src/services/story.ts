@@ -1,6 +1,6 @@
-import StoryModel from '../models/local/story';
+import StoryModel from '@/models/local/story';
 
-import type { IEntityID } from '../types/entity';
+import type { IEntityID } from '@/types/entity';
 
 export default class StoryService {
 	sotryModel = new StoryModel();

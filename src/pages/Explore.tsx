@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { useModalPost } from '../hooks/useModalPost';
+import { useModalPost } from '@/hooks/useModalPost';
 
-import { useUserStore } from '../store/user';
+import { useUserStore } from '@/store/user';
 
-import PostService from '../services/post';
+import PostService from '@/services/post';
 
-import PostSoloImage from '../components/PostSoloImage';
+import PostSoloImage from '@/components/PostSoloImage';
 
-import type { IPostSoloImage } from '../types/post';
+import type { IPostSoloImage } from '@/types/post';
 
 function Explore() {
 	const { openModal } = useModalPost();

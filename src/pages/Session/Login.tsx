@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import InstagramText from '../../components/icons/InstagramText';
-import InputSession from '../../components/InputSession';
-import { LoginSchema } from '../../utilities/schema/sessionSchema';
+import InstagramText from '@/components/icons/InstagramText';
+import InputSession from '@/components/InputSession';
+import { LoginSchema } from '@/utilities/schema/sessionSchema';
 
 export default function Login() {
 	const [formData, setFormData] = useState({ username: '', password: '' });
