@@ -6,17 +6,17 @@ import { currentUser } from '@/data/user';
 
 interface IUserState {
 	currentUser?: ICurrentUser;
-	login: (currentUserData: ICurrentUser) => void;
+	login: () => void;
 	logout: () => void;
 }
 export const useUserStore = create<IUserState>((set) => ({
 	// Initial State
-	currentUser: currentUser,
+	currentUser: undefined,
 
 	// Actions
-	login: (currentUserData: ICurrentUser) =>
+	login: () =>
 		set(() => ({
-			currentUser: currentUserData,
+			currentUser: currentUser,
 		})),
 	logout: () =>
 		set(() => ({

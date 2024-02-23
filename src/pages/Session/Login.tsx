@@ -1,16 +1,21 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+import { useUserStore } from '@/store/user';
 
 import InstagramText from '@/components/icons/InstagramText';
 import InputSession from '@/components/InputSession';
+
 import { LoginSchema } from '@/utilities/schema/sessionSchema';
 
 export default function Login() {
 	const [formData, setFormData] = useState({ username: '', password: '' });
 	const [error, setError] = useState(false);
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
+	const login = useUserStore((state) => state.login);
+
+	const isFormEmpty = !!formData.username.length && !!formData.password.length;
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -18,8 +23,10 @@ export default function Login() {
 
 		try {
 			LoginSchema.parse(formData);
-			// navigate('/');
+
 			console.log(formData);
+			login();
+			navigate('/');
 		} catch (e) {
 			console.error(e);
 			setError(true);
@@ -57,7 +64,7 @@ export default function Login() {
 
 					<button
 						type='submit'
-						disabled
+						disabled={!isFormEmpty}
 						className='text-sm text-center bg-blue-500 disabled:bg-blue-300 text-white py-1 rounded font-medium'
 					>
 						Log In
