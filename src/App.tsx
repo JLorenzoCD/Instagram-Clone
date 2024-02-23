@@ -12,6 +12,9 @@ import Session from './pages/Session';
 import Login from './pages/Session/Login';
 import Singup from './pages/Session/Singup';
 
+import PrivateRoute from './pages/RoutesType/PrivateRoute';
+import GuestRoute from './pages/RoutesType/GuestRoute';
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -19,33 +22,46 @@ function App() {
 				<Route
 					path='/'
 					element={
-						<Layout>
-							<Home />
-						</Layout>
+						<PrivateRoute>
+							<Layout>
+								<Home />
+							</Layout>
+						</PrivateRoute>
 					}
 				/>
 				<Route
 					path='/profile'
 					element={
-						<Layout>
-							<ModalPostProvider>
-								<Profile />
-							</ModalPostProvider>
-						</Layout>
+						<PrivateRoute>
+							<Layout>
+								<ModalPostProvider>
+									<Profile />
+								</ModalPostProvider>
+							</Layout>
+						</PrivateRoute>
 					}
 				/>
 				<Route
 					path='/explore'
 					element={
-						<Layout>
-							<ModalPostProvider>
-								<Explore />
-							</ModalPostProvider>
-						</Layout>
+						<PrivateRoute>
+							<Layout>
+								<ModalPostProvider>
+									<Explore />
+								</ModalPostProvider>
+							</Layout>
+						</PrivateRoute>
 					}
 				/>
 
-				<Route path='/user' element={<Session />}>
+				<Route
+					path='/user'
+					element={
+						<GuestRoute>
+							<Session />
+						</GuestRoute>
+					}
+				>
 					<Route index element={<Login />} />
 					<Route path='login' element={<Login />} />
 					<Route path='singup' element={<Singup />} />
