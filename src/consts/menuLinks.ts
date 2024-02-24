@@ -8,7 +8,7 @@ import Create from '@/components/icons/Create';
 import Config from '@/components/icons/Config';
 import SkeletonProfile from '@/components/skeleton/Profile';
 
-const lks = {
+export const menuLinks = {
 	homeLink: {
 		to: '/',
 		text: 'Inicio',
@@ -50,29 +50,28 @@ const lks = {
 		icon: SkeletonProfile,
 	},
 	configLink: {
-		to: '#',
 		text: 'Mas',
 		icon: Config,
 	},
 };
 
 export const allLinks = [
-	lks.homeLink,
-	lks.searchLink,
-	lks.exploreLink,
-	lks.reelsLink,
-	lks.messageLink,
-	lks.notificationLink,
-	lks.createLink,
-	lks.profileLink,
-	lks.configLink,
+	menuLinks.homeLink,
+	menuLinks.searchLink,
+	menuLinks.exploreLink,
+	menuLinks.reelsLink,
+	menuLinks.messageLink,
+	menuLinks.notificationLink,
+	menuLinks.createLink,
+	menuLinks.profileLink,
+	menuLinks.configLink,
 ];
 
 export const mobileLinks = [
-	lks.homeLink,
-	lks.exploreLink,
-	lks.reelsLink,
-	lks.createLink,
-	lks.messageLink,
-	lks.profileLink,
+	menuLinks.homeLink,
+	menuLinks.exploreLink,
+	menuLinks.reelsLink,
+	menuLinks.createLink,
+	menuLinks.messageLink,
+	menuLinks.profileLink,
 ];
