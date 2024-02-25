@@ -1,3 +1,4 @@
+import { useUserStore } from '@/store/user';
 import Close from './icons/Close';
 
 import Modal from './Modal';
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export default function ModalOptions({ show, closeModal }: Props) {
+	const logout = useUserStore((state) => state.logout);
+
 	return (
 		<Modal portalID='portal-modal'>
 			<div
@@ -21,7 +24,7 @@ export default function ModalOptions({ show, closeModal }: Props) {
 					<div className='bg-white rounded-lg shadow'>
 						<button
 							type='button'
-							className='text-gray-50 bg-transparent hover:bg-gray-400 hover:text-gray-900 rounded-lg text-sm size-12 ms-auto inline-flex justify-center items-center absolute top-0 right-0'
+							className='text-gray-50 bg-transparent hover:bg-gray-400 rounded-lg text-sm size-12 ms-auto inline-flex justify-center items-center absolute top-0 right-0 font-bold'
 							onClick={closeModal}
 							title='Close modal'
 						>
@@ -29,16 +32,29 @@ export default function ModalOptions({ show, closeModal }: Props) {
 						</button>
 
 						<ul className='block p-1'>
-							<li className='flex p-4 lg:p-4 hover:bg-zinc-200'>
-								<p className='ml-4'>Opcion 1</p>
-							</li>
-							<li className='flex p-4 lg:p-4 hover:bg-zinc-200'>
-								<p className='ml-4'>Opcion 2</p>
-							</li>
+							<ModalOptionItem text='Configuracion' />
+							<ModalOptionItem text='Tu actividad' />
+							<ModalOptionItem text='Guardado' />
+							<ModalOptionItem text='Cambiar apariencia' />
+							<ModalOptionItem text='Reportar un problema' />
+							<ModalOptionItem text='Salir' onClick={logout} />
 						</ul>
 					</div>
 				</div>
 			</div>
 		</Modal>
+	);
+}
+
+interface ModalOptionItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	text: string;
+}
+function ModalOptionItem({ text, ...props }: ModalOptionItemProps) {
+	return (
+		<li>
+			<button {...props} className='p-4 lg:p-4 w-full hover:bg-zinc-200'>
+				{text}
+			</button>
+		</li>
 	);
 }
