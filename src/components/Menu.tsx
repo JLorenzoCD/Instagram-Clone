@@ -35,15 +35,15 @@ export default function Menu() {
 function MenuLinksDesktop({ openModal }: { openModal: () => void }) {
 	return (
 		<ul className='hidden sm:block pl-1'>
-			<MenuLink data={menuLinks.homeLink} />
-			<MenuLink data={menuLinks.searchLink} />
-			<MenuLink data={menuLinks.exploreLink} />
-			<MenuLink data={menuLinks.reelsLink} />
-			<MenuLink data={menuLinks.messageLink} />
-			<MenuLink data={menuLinks.notificationLink} />
-			<MenuLink data={menuLinks.createLink} />
-			<MenuLink data={menuLinks.profileLink} />
-			<MenuLink data={menuLinks.configLink} onClick={openModal} />
+			<MenuItem data={menuLinks.homeLink} />
+			<MenuItem data={menuLinks.searchLink} />
+			<MenuItem data={menuLinks.exploreLink} />
+			<MenuItem data={menuLinks.reelsLink} />
+			<MenuItem data={menuLinks.messageLink} />
+			<MenuItem data={menuLinks.notificationLink} />
+			<MenuItem data={menuLinks.createLink} />
+			<MenuItem data={menuLinks.profileLink} />
+			<MenuItem data={menuLinks.configLink} onClick={openModal} />
 		</ul>
 	);
 }
@@ -51,12 +51,12 @@ function MenuLinksDesktop({ openModal }: { openModal: () => void }) {
 function MenuLinksMobile() {
 	return (
 		<ul className='flex justify-evenly sm:hidden w-screen'>
-			<MenuLink data={menuLinks.homeLink} isMobile />
-			<MenuLink data={menuLinks.exploreLink} isMobile />
-			<MenuLink data={menuLinks.reelsLink} isMobile />
-			<MenuLink data={menuLinks.createLink} isMobile />
-			<MenuLink data={menuLinks.messageLink} isMobile />
-			<MenuLink data={menuLinks.profileLink} isMobile />
+			<MenuItem data={menuLinks.homeLink} isMobile />
+			<MenuItem data={menuLinks.exploreLink} isMobile />
+			<MenuItem data={menuLinks.reelsLink} isMobile />
+			<MenuItem data={menuLinks.createLink} isMobile />
+			<MenuItem data={menuLinks.messageLink} isMobile />
+			<MenuItem data={menuLinks.profileLink} isMobile />
 		</ul>
 	);
 }
@@ -70,7 +70,7 @@ interface Props {
 	onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	isMobile?: boolean;
 }
-function MenuLink({ data, onClick, isMobile }: Props) {
+function MenuItem({ data, onClick, isMobile }: Props) {
 	if (data.to !== undefined)
 		return (
 			<li className={isMobile ? 'flex-1' : ''}>
