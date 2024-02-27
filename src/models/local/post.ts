@@ -25,4 +25,10 @@ export default class PostModel {
 
 		return modalPostData;
 	}
+
+	async getInfo(postId: IEntityID) {
+		console.log(`Obteninendo la informacion del post con id: ${postId}`);
+
+		return postsData;
+	}
 }

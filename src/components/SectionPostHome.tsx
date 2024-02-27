@@ -6,10 +6,10 @@ import PostService from '@/services/post';
 
 import Post from './Post';
 
-import type { IPostHome } from '@/types/post';
+import type { IPostFewInfo } from '@/types/post';
 
 export default function SectionPostHome() {
-	const [data, setData] = useState<undefined | IPostHome[]>(undefined);
+	const [data, setData] = useState<undefined | IPostFewInfo[]>(undefined);
 
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 

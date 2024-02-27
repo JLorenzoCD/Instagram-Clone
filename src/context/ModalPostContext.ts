@@ -8,6 +8,7 @@ interface IModalPostContext {
 		postId: IEntityID | null;
 	};
 	openModal: (postId: IEntityID) => void;
+	closeModal: () => void;
 }
 
 export const ModalPostContext = createContext<IModalPostContext>({} as IModalPostContext);

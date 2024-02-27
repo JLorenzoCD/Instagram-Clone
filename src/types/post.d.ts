@@ -24,7 +24,7 @@ export type IPost = {
 export type IPostToStore = Pick<IPost, 'urlImage' | 'description'>;
 export type IPostToUpdate = Partial<Omit<IPost, 'id' | 'user'>>;
 
-export type IPostHome = {
+export type IPostFewInfo = {
 	post: IPost;
 	me: {
 		followed: boolean;
@@ -42,7 +42,7 @@ export type IPostSoloImage = {
 	time: string;
 };
 
-export type IModalPost = {
+export type IPostFullInfo = {
 	user: {
 		name: string;
 		picture: string;

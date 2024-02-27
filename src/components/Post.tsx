@@ -11,10 +11,10 @@ import Comment from './Comment';
 
 import { getTimeAgo } from '@/utilities/time';
 
-import type { IPostHome } from '@/types/post';
+import type { IPostFewInfo } from '@/types/post';
 
 interface Props {
-	data: IPostHome;
+	data: IPostFewInfo;
 }
 
 export default function Post({ data: { post, me } }: Props) {

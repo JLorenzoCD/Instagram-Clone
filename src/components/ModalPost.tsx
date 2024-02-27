@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useScreenSize } from '@/hooks/useScreenSize';
+
+import { Navigate } from 'react-router-dom';
 
 import PostService from '@/services/post';
 
@@ -17,7 +20,7 @@ import Comment from './Comment';
 import { getTimeAgo } from '@/utilities/time';
 
 import type { IEntityID } from '@/types/entity';
-import type { IModalPost } from '@/types/post';
+import type { IPostFullInfo } from '@/types/post';
 
 interface Props {
 	modalData: {
@@ -28,7 +31,8 @@ interface Props {
 }
 
 export default function ModalPost({ modalData, closeModal }: Props) {
-	const [modalPostData, setModalPostData] = useState<undefined | IModalPost>(undefined);
+	const [modalPostData, setModalPostData] = useState<undefined | IPostFullInfo>(undefined);
+	const { width } = useScreenSize();
 
 	useEffect(() => {
 		const postService = new PostService();
@@ -38,9 +42,11 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 		})();
 	}, [modalData.postId]);
 
-	if (!modalData.show || modalPostData === undefined) return null;
+	if (width <= 640) {
+		return <Navigate to={`/post/${modalData.postId}`} replace />;
+	}
 
-	console.log(modalData.postId);
+	if (!modalData.show || modalPostData === undefined) return null;
 
 	return (
 		<Modal portalID='portal-modal'>

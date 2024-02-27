@@ -7,6 +7,7 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Explore from './pages/Explore';
+import ShowPost from './pages/ShowPost';
 
 import Session from './pages/Session';
 import Login from './pages/Session/Login';
@@ -48,6 +49,19 @@ function App() {
 							<Layout>
 								<ModalPostProvider>
 									<Explore />
+								</ModalPostProvider>
+							</Layout>
+						</PrivateRoute>
+					}
+				/>
+
+				<Route
+					path='/post/:postID'
+					element={
+						<PrivateRoute>
+							<Layout>
+								<ModalPostProvider>
+									<ShowPost />
 								</ModalPostProvider>
 							</Layout>
 						</PrivateRoute>

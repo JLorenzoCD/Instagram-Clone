@@ -20,7 +20,7 @@ export default function ModalPostProvider({ children }: Props) {
 	const closeModal = () => setModalData({ show: false, postId: null });
 
 	return (
-		<ModalPostContext.Provider value={{ modalData, openModal }}>
+		<ModalPostContext.Provider value={{ modalData, openModal, closeModal }}>
 			{modalData.show && <ModalPost closeModal={closeModal} modalData={modalData} />}
 			{children}
 		</ModalPostContext.Provider>

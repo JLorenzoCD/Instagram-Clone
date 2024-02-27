@@ -22,6 +22,10 @@ export default class PostService {
 		return await this.postModel.getInfoLargeScreen(postId);
 	}
 
+	async getInfo(postId: IEntityID) {
+		return await this.postModel.getInfo(postId);
+	}
+
 	async store(data: IPostToStore) {
 		console.log(`Se crea un post con los siguientes datos: ${data}`);
 	}
