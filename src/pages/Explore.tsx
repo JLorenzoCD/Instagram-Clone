@@ -54,7 +54,7 @@ function Explore() {
 							<>
 								{/* Este tiene que ir a la derecha o a la izquierda y debe ser el doble de alto */}
 								<PostSoloImage
-									className={`${index % 2 === 0 ? 'order-2' : ''} size-full`}
+									className={index % 2 === 0 ? 'order-2' : ''}
 									onClick={() => openModal(fila[0].id)}
 									data={fila[0]}
 								/>
@@ -65,7 +65,6 @@ function Explore() {
 											return (
 												<PostSoloImage
 													key={post.id}
-													className='size-full'
 													onClick={() => openModal(post.id)}
 													data={post}
 												/>

@@ -9,7 +9,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function PostSoloImage({ data: { image, likes, comments, id }, ...props }: Props) {
 	return (
-		<button {...props}>
+		<button {...props} className='size-full'>
 			<article className='bg-gray-100 text-white md:mb-6 relative overflow-hidden size-full'>
 				<img className='size-full' src={image} alt={`post id:${id}`} />
 				{/* overlay*/}
