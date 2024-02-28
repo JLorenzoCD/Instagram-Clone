@@ -8,8 +8,10 @@ import InputSession from '@/components/InputSession';
 
 import { LoginSchema } from '@/utilities/schema/sessionSchema';
 
+import type { IUserLogin } from '@/types/user';
+
 export default function Login() {
-	const [formData, setFormData] = useState({ username: '', password: '' });
+	const [formData, setFormData] = useState<IUserLogin>({ username: '', password: '' });
 	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
@@ -24,8 +26,7 @@ export default function Login() {
 		try {
 			LoginSchema.parse(formData);
 
-			console.log(formData);
-			login();
+			await login(formData);
 			navigate('/');
 		} catch (e) {
 			console.error(e);

@@ -22,3 +22,15 @@ export type ICurrentUserProfile = {
 	numberFollowing: number;
 	description: string;
 };
+
+export type IUserLogin = {
+	username: string;
+	password: string;
+};
+
+export type IUserSingup = {
+	email: string;
+	username: string;
+	password: string;
+	passwordConfirm: string;
+};

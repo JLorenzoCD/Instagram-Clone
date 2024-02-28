@@ -1,8 +1,23 @@
 import { currentUser, currentUserProfile, userSuggestions } from '@/data/user';
 
 import type { IEntityID } from '@/types/entity';
+import type { IUserLogin, IUserSingup } from '@/types/user';
 
 export default class UserModel {
+	async login(loginData: IUserLogin) {
+		console.log({ loginData });
+		return currentUser;
+	}
+
+	async singup(singupData: IUserSingup) {
+		console.log({ singupData });
+		return currentUser;
+	}
+
+	async logout() {
+		console.log('Cerrando sesion');
+	}
+
 	async getCurrentUserData(currentUserId: IEntityID) {
 		console.log(`Obteniendo la info del usuario actual cuyo id es "${currentUserId}"`);
 

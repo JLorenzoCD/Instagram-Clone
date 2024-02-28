@@ -1,14 +1,22 @@
 import UserModel from '@/models/local/user';
 
 import type { IEntityID } from '@/types/entity';
+import type { IUserLogin, IUserSingup } from '@/types/user';
 
 export default class UserServices {
 	userModel = new UserModel();
 
-	async logIn() {}
-	async logUp() {}
-	async logOut() {
+	async login(loginData: IUserLogin) {
+		return await this.userModel.login(loginData);
+	}
+
+	async singup(singupData: IUserSingup) {
+		return await this.userModel.singup(singupData);
+	}
+
+	async logout() {
 		console.log('Cerrando secion');
+		return await this.userModel.logout();
 	}
 
 	async getCurrentUserData(currentUserId: IEntityID) {

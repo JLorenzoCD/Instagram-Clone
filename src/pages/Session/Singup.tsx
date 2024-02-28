@@ -8,13 +8,15 @@ import InstagramText from '@/components/icons/InstagramText';
 
 import { SingupSchema } from '@/utilities/schema/sessionSchema';
 
+import type { IUserSingup } from '@/types/user';
+
 export default function Singup() {
-	const [formData, setFormData] = useState({ email: '', username: '', password: '', passwordConfirm: '' });
+	const [formData, setFormData] = useState<IUserSingup>({ email: '', username: '', password: '', passwordConfirm: '' });
 	// TODO: Mejorar error
 	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
-	const login = useUserStore((state) => state.login);
+	const singup = useUserStore((state) => state.singup);
 
 	const isFormEmpty =
 		!!formData.username.length &&
@@ -29,8 +31,7 @@ export default function Singup() {
 		try {
 			SingupSchema.parse(formData);
 
-			console.log(formData);
-			login();
+			await singup(formData);
 			navigate('/');
 		} catch (e) {
 			console.error(e);
