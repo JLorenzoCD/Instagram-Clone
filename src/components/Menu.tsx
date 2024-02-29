@@ -36,12 +36,12 @@ function MenuLinksDesktop({ openModal }: { openModal: () => void }) {
 	return (
 		<ul className='hidden sm:block pl-1'>
 			<MenuItem data={menuLinks.homeLink} />
-			<MenuItem data={menuLinks.searchLink} />
+			<MenuItem data={menuLinks.searchLink} disabled />
 			<MenuItem data={menuLinks.exploreLink} />
-			<MenuItem data={menuLinks.reelsLink} />
-			<MenuItem data={menuLinks.messageLink} />
-			<MenuItem data={menuLinks.notificationLink} />
-			<MenuItem data={menuLinks.createLink} />
+			<MenuItem data={menuLinks.reelsLink} disabled />
+			<MenuItem data={menuLinks.messageLink} disabled />
+			<MenuItem data={menuLinks.notificationLink} disabled />
+			<MenuItem data={menuLinks.createLink} disabled onClick={() => console.log('OpenModal create post')} />
 			<MenuItem data={menuLinks.profileLink} />
 			<MenuItem data={menuLinks.configLink} onClick={openModal} />
 		</ul>
@@ -53,9 +53,9 @@ function MenuLinksMobile() {
 		<ul className='flex justify-evenly sm:hidden w-screen'>
 			<MenuItem data={menuLinks.homeLink} isMobile />
 			<MenuItem data={menuLinks.exploreLink} isMobile />
-			<MenuItem data={menuLinks.reelsLink} isMobile />
-			<MenuItem data={menuLinks.createLink} isMobile />
-			<MenuItem data={menuLinks.messageLink} isMobile />
+			<MenuItem data={menuLinks.reelsLink} isMobile disabled />
+			<MenuItem data={menuLinks.createLink} isMobile disabled />
+			<MenuItem data={menuLinks.messageLink} isMobile disabled />
 			<MenuItem data={menuLinks.profileLink} isMobile />
 		</ul>
 	);
@@ -69,33 +69,18 @@ interface Props {
 	};
 	onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	isMobile?: boolean;
+	disabled?: boolean;
 }
-function MenuItem({ data, onClick, isMobile }: Props) {
-	if (data.to !== undefined)
-		return (
-			<li className={isMobile ? 'flex-1' : ''}>
-				<Link to={data.to} className={`flex hover:bg-zinc-200 ${isMobile ? 'justify-center py-3' : 'flex p-4 lg:p-4'}`}>
-					<span className='size-6'>
-						<data.icon className='size-full' />
-					</span>
-					{!isMobile && (
-						<>
-							{' '}
-							<p className='hidden ml-4 lg:block'>{data.text}</p>
-						</>
-					)}
-				</Link>
-			</li>
-		);
+function MenuItem({ data, onClick, disabled, isMobile }: Props) {
+	const className = `w-full flex ${isMobile ? 'justify-center py-3' : 'flex p-4 lg:p-4'} ${
+		disabled ? 'text-slate-400 pointer-events-none' : 'hover:bg-zinc-200'
+	}`;
 
-	return (
-		<li className={isMobile ? 'flex-1' : ''}>
-			<button
-				onClick={onClick}
-				className={`w-full flex hover:bg-zinc-200 ${isMobile ? 'justify-center py-3' : 'flex p-4 lg:p-4'}`}
-			>
+	function InternalElement() {
+		return (
+			<>
 				<span className='size-6'>
-					<data.icon className='size-full' />
+					<data.icon className='size-full' stroke='gray' />
 				</span>
 				{!isMobile && (
 					<>
@@ -103,6 +88,23 @@ function MenuItem({ data, onClick, isMobile }: Props) {
 						<p className='hidden ml-4 lg:block'>{data.text}</p>
 					</>
 				)}
+			</>
+		);
+	}
+
+	if (data.to !== undefined)
+		return (
+			<li className={isMobile ? 'flex-1' : ''}>
+				<Link to={data.to} className={className} onClick={(e) => (disabled ? e.preventDefault() : null)}>
+					<InternalElement />
+				</Link>
+			</li>
+		);
+
+	return (
+		<li className={isMobile ? 'flex-1' : ''}>
+			<button disabled={disabled} onClick={onClick} className={className}>
+				<InternalElement />
 			</button>
 		</li>
 	);

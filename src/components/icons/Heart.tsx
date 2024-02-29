@@ -2,7 +2,7 @@ interface Props extends React.SVGProps<SVGSVGElement> {
 	liked?: boolean;
 }
 
-function Heart({ liked = false, ...props }: Props) {
+export default function Heart({ liked = false, ...props }: Props) {
 	let borderSvg;
 
 	if (liked) {
@@ -29,5 +29,3 @@ function Heart({ liked = false, ...props }: Props) {
 		</svg>
 	);
 }
-
-export default Heart;
