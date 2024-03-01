@@ -32,11 +32,11 @@ export default function ModalOptions({ show, closeModal }: Props) {
 						</button>
 
 						<ul className='block p-1'>
-							<ModalOptionItem text='Configuracion' />
-							<ModalOptionItem text='Tu actividad' />
-							<ModalOptionItem text='Guardado' />
-							<ModalOptionItem text='Cambiar apariencia' />
-							<ModalOptionItem text='Reportar un problema' />
+							<ModalOptionItem text='Configuracion' disabled />
+							<ModalOptionItem text='Tu actividad' disabled />
+							<ModalOptionItem text='Guardado' disabled />
+							<ModalOptionItem text='Cambiar apariencia' disabled />
+							<ModalOptionItem text='Reportar un problema' disabled />
 							<ModalOptionItem text='Salir' onClick={logout} />
 						</ul>
 					</div>
@@ -49,10 +49,15 @@ export default function ModalOptions({ show, closeModal }: Props) {
 interface ModalOptionItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	text: string;
 }
-function ModalOptionItem({ text, ...props }: ModalOptionItemProps) {
+function ModalOptionItem({ text, disabled, ...props }: ModalOptionItemProps) {
 	return (
 		<li>
-			<button {...props} className='p-4 lg:p-4 w-full hover:bg-zinc-200'>
+			<button
+				{...props}
+				className={`p-4 lg:p-4 w-full hover:bg-zinc-200 ${
+					disabled ? 'text-slate-400 pointer-events-none' : 'hover:bg-zinc-200'
+				}`}
+			>
 				{text}
 			</button>
 		</li>
