@@ -8,7 +8,7 @@ interface Props {
 	closeModal: () => void;
 }
 
-export default function ModalOptions({ show, closeModal }: Props) {
+export default function ModalOption({ show, closeModal }: Props) {
 	const logout = useUserStore((state) => state.logout);
 
 	return (

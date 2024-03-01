@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useModalOption } from '@/hooks/useModalOption';
+import ModalOptionProvider from '@/context/ModalOptionProvider';
 
 import { Link } from 'react-router-dom';
 
@@ -7,32 +8,24 @@ import { menuLinks } from '@/consts/menuLinks';
 import InstagramText from './icons/InstagramText';
 import Instagram from './icons/Instagram';
 
-import ModalOptions from './ModalOptions';
-
 export default function Menu() {
-	const [show, setShow] = useState<boolean>(false);
-
-	const openModal = () => setShow(true);
-	const closeModal = () => setShow(false);
-
 	return (
-		<>
-			{show && <ModalOptions closeModal={closeModal} show={show} />}
-
+		<ModalOptionProvider>
 			<header className='bg-zinc-50 fixed sm:sticky lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
 				<Link to='/' className='hidden sm:block p-5 mb-6'>
 					<InstagramText className='hidden lg:block' />
 					<Instagram className='lg:hidden' />
 				</Link>
 
-				<MenuLinksDesktop openModal={openModal} />
+				<MenuLinksDesktop />
 				<MenuLinksMobile />
 			</header>
-		</>
+		</ModalOptionProvider>
 	);
 }
 
-function MenuLinksDesktop({ openModal }: { openModal: () => void }) {
+function MenuLinksDesktop() {
+	const { openModal: openModalOption } = useModalOption();
 	return (
 		<ul className='hidden sm:block pl-1'>
 			<MenuItem data={menuLinks.homeLink} />
@@ -43,7 +36,7 @@ function MenuLinksDesktop({ openModal }: { openModal: () => void }) {
 			<MenuItem data={menuLinks.notificationLink} disabled />
 			<MenuItem data={menuLinks.createLink} disabled onClick={() => console.log('OpenModal create post')} />
 			<MenuItem data={menuLinks.profileLink} />
-			<MenuItem data={menuLinks.configLink} onClick={openModal} />
+			<MenuItem data={menuLinks.configLink} onClick={openModalOption} />
 		</ul>
 	);
 }
