@@ -15,7 +15,6 @@ export const menuLinks = {
 		icon: Home,
 	},
 	searchLink: {
-		to: '#',
 		text: 'Buscar',
 		icon: Search,
 	},
@@ -35,12 +34,10 @@ export const menuLinks = {
 		icon: Message,
 	},
 	notificationLink: {
-		to: '#',
 		text: 'Notificaciones',
 		icon: Heart,
 	},
 	createLink: {
-		to: '#',
 		text: 'Crear',
 		icon: Create,
 	},
