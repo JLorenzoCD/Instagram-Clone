@@ -1,31 +1,38 @@
 import { useModalOption } from '@/hooks/useModalOption';
+import { useModalCreatePost } from '@/hooks/useModalCreatePost';
+
 import ModalOptionProvider from '@/context/ModalOptionProvider';
+import ModalCreatePostProvider from '@/context/ModalCreatePostProvider';
 
 import { Link } from 'react-router-dom';
-
-import { menuLinks } from '@/consts/menuLinks';
 
 import InstagramText from './icons/InstagramText';
 import Instagram from './icons/Instagram';
 
+import { menuLinks } from '@/consts/menuLinks';
+
 export default function Menu() {
 	return (
 		<ModalOptionProvider>
-			<header className='bg-zinc-50 fixed sm:sticky lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
-				<Link to='/' className='hidden sm:block p-5 mb-6'>
-					<InstagramText className='hidden lg:block' />
-					<Instagram className='lg:hidden' />
-				</Link>
+			<ModalCreatePostProvider>
+				<header className='bg-zinc-50 fixed sm:sticky lg:p-4 z-10 bottom-0 sm:bottom-auto sm:top-0'>
+					<Link to='/' className='hidden sm:block p-5 mb-6'>
+						<InstagramText className='hidden lg:block' />
+						<Instagram className='lg:hidden' />
+					</Link>
 
-				<MenuLinksDesktop />
-				<MenuLinksMobile />
-			</header>
+					<MenuLinksDesktop />
+					<MenuLinksMobile />
+				</header>
+			</ModalCreatePostProvider>
 		</ModalOptionProvider>
 	);
 }
 
 function MenuLinksDesktop() {
 	const { openModal: openModalOption } = useModalOption();
+	const { openModal: openModalCreatePost } = useModalCreatePost();
+
 	return (
 		<ul className='hidden sm:block pl-1'>
 			<MenuItem data={menuLinks.homeLink} />
@@ -34,7 +41,7 @@ function MenuLinksDesktop() {
 			<MenuItem data={menuLinks.reelsLink} disabled />
 			<MenuItem data={menuLinks.messageLink} disabled />
 			<MenuItem data={menuLinks.notificationLink} disabled />
-			<MenuItem data={menuLinks.createLink} disabled onClick={() => console.log('OpenModal create post')} />
+			<MenuItem data={menuLinks.createLink} onClick={openModalCreatePost} />
 			<MenuItem data={menuLinks.profileLink} />
 			<MenuItem data={menuLinks.configLink} onClick={openModalOption} />
 		</ul>
@@ -42,12 +49,21 @@ function MenuLinksDesktop() {
 }
 
 function MenuLinksMobile() {
+	const { openModal: openModalCreatePost } = useModalCreatePost();
+
 	return (
 		<ul className='flex justify-evenly sm:hidden w-screen'>
 			<MenuItem data={menuLinks.homeLink} isMobile />
 			<MenuItem data={menuLinks.exploreLink} isMobile />
 			<MenuItem data={menuLinks.reelsLink} isMobile disabled />
-			<MenuItem data={menuLinks.createLink} isMobile disabled />
+			<MenuItem
+				data={menuLinks.createLink}
+				isMobile
+				onClick={() => {
+					console.log('ModalCreatePost');
+					openModalCreatePost();
+				}}
+			/>
 			<MenuItem data={menuLinks.messageLink} isMobile disabled />
 			<MenuItem data={menuLinks.profileLink} isMobile />
 		</ul>
