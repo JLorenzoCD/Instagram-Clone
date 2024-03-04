@@ -4,6 +4,10 @@ import Close from './icons/Close';
 
 import Modal from './Modal';
 
+import { ACCEPTED_IMAGE_TYPES } from '@/consts/post';
+
+import { createPostSchema } from '@/utilities/schema/createPostSchema';
+
 interface Props {
 	show: boolean;
 	closeModal: () => void;
@@ -17,31 +21,28 @@ export default function ModalCreatePost({ show, closeModal }: Props) {
 
 	const fileSelectedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const fileName = e.target.value;
-		const idxDot = fileName.lastIndexOf('.') + 1;
-		const extFile = fileName.substring(idxDot, fileName.length).toLowerCase();
 
-		if (!(extFile == 'jpg' || extFile == 'png')) {
-			alert('Only jpg and png files are allowed!');
-			e.target.value = '';
-			return;
-		}
-
-		if (e.target.files === null) {
-			alert('Error!');
+		if (e.target.files === null || !e.target.files.length || !fileName.trim().length) {
 			return;
 		}
 
 		const file = e.target.files[0];
-		setFormData((prev) => ({ ...prev, imageFile: file }));
 
-		console.log('Archivo valido');
+		if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+			alert('Only .jpg, .jpeg and .png files are allowed!');
+			e.target.value = '';
+			return;
+		}
+
+		setFormData((prev) => ({ ...prev, imageFile: file }));
 	};
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		try {
-			console.log(formData);
+			const clearData = createPostSchema.parse(formData);
+			console.log(clearData);
 		} catch (err) {
 			console.error(err);
 		}
