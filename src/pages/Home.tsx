@@ -4,11 +4,10 @@ import { useUserStore } from '@/store/user';
 
 import UserServices from '@/services/user';
 
-import Footer from '@/components/Footer';
-import Stories from '@/components/Stories';
 import Suggestions from '@/components/Suggestions';
-
+import SectionStories from '@/components/SectionStories';
 import SectionPostHome from '@/components/SectionPostHome';
+import Footer from '@/components/Footer';
 
 import type { ICurrentUser } from '@/types/user';
 
@@ -32,7 +31,7 @@ function Home() {
 		<>
 			<div className='xl:grid xl:grid-cols-6'>
 				<div className='xl:col-span-4'>
-					<Stories />
+					<SectionStories />
 
 					<SectionPostHome />
 				</div>
@@ -52,7 +51,7 @@ function Home() {
 							<div className='w-32 text-right m-auto'>
 								<a
 									className='text-xs text-sky-500 font-bold cursor-pointer'
-									onClick={async () => await userService.logOut()}
+									onClick={async () => await userService.logout()}
 								>
 									Sign Out
 								</a>
