@@ -28,9 +28,9 @@ export default function SectionStories() {
 	}, [currentUserId]);
 
 	return (
-		<section className='overflow-hidden max-w-xl mx-auto p-3 mb-5 relative'>
+		<section className='overflow-hidden max-w-xl mx-auto p-3 mb-5 relative min-h-[100px]'>
 			<ul className='flex space-x-2 overflow-x-scroll scroll-smooth no-scrollbar' onScroll={onScroll} ref={storiesRef}>
-				{!!storiesData && !!storiesData.user && <Storie data={storiesData.user} />}
+				{!!storiesData && !!storiesData.user && <Storie data={storiesData.user} isCurrentUser />}
 
 				{!!storiesData &&
 					!!storiesData.stories &&
