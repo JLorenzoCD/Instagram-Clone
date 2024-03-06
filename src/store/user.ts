@@ -4,6 +4,8 @@ import type { ICurrentUser, IUserLogin, IUserSingup } from '@/types/user';
 
 import UserServices from '@/services/user';
 
+import { currentUser } from '@/data/user';
+
 interface IUserState {
 	currentUser?: ICurrentUser;
 
@@ -13,7 +15,8 @@ interface IUserState {
 }
 export const useUserStore = create<IUserState>((set) => ({
 	// Initial State
-	currentUser: undefined,
+	// currentUser: undefined,
+	currentUser: currentUser,
 
 	// Actions
 	login: async (loginData: IUserLogin) => {
