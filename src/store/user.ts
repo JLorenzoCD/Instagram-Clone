@@ -32,8 +32,12 @@ export const useUserStore = create<IUserState>((set) => ({
 			currentUser: currentUser,
 		}));
 	},
-	logout: async () =>
+	logout: async () => {
+		const userServices = new UserServices();
+		await userServices.logout();
+
 		set(() => ({
 			currentUser: undefined,
-		})),
+		}));
+	},
 }));

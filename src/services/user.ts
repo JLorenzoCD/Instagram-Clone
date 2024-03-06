@@ -15,7 +15,6 @@ export default class UserServices {
 	}
 
 	async logout() {
-		console.log('Cerrando secion');
 		return await this.userModel.logout();
 	}
 

@@ -15,6 +15,7 @@ function Home() {
 	const [data, setData] = useState<undefined | ICurrentUser>(undefined);
 
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
+	const logout = useUserStore((state) => state.logout);
 
 	useEffect(() => {
 		(async () => {
@@ -24,8 +25,6 @@ function Home() {
 	}, [currentUserId]);
 
 	if (data === undefined) return null;
-
-	const userService = new UserServices();
 
 	return (
 		<>
@@ -49,10 +48,7 @@ function Home() {
 								<div className='text-gray-500 text-sm leading-4'>{data.name}</div>
 							</div>
 							<div className='w-32 text-right m-auto'>
-								<a
-									className='text-xs text-sky-500 font-bold cursor-pointer'
-									onClick={async () => await userService.logout()}
-								>
+								<a className='text-xs text-sky-500 font-bold cursor-pointer' onClick={logout}>
 									Sign Out
 								</a>
 							</div>
