@@ -1,25 +1,27 @@
-import { useEffect, useState } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/store/user';
 
 import PostService from '@/services/post';
 
 import Post from './Post';
 
-import type { IPostFewInfo } from '@/types/post';
-
 export default function SectionPostHome() {
-	const [data, setData] = useState<undefined | IPostFewInfo[]>(undefined);
-
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
-	useEffect(() => {
-		(async () => {
+	const { data, isLoading } = useQuery({
+		queryFn: () => {
 			const postService = new PostService();
+			return postService.getHome(currentUserId);
+		},
+		queryKey: ['postHomeData', currentUserId],
+	});
 
-			setData(await postService.getHome(currentUserId));
-		})();
-	}, [currentUserId]);
+	if (isLoading)
+		return (
+			<section className='flex justify-center'>
+				<p>Loading Posts...</p>
+			</section>
+		);
 
 	return (
 		<section className='flex justify-center'>

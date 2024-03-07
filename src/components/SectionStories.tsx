@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { useUserStore } from '@/store/user';
 import { useScrollX } from '@/hooks/useScrollX';
@@ -7,25 +7,29 @@ import StoryService from '@/services/story';
 
 import Storie from './Storie';
 
-import type { IStory } from '@/types/story';
-
 export default function SectionStories() {
 	const { onScroll, scrollLeft, scrollRight, storiesRef, showLeft, showRight } = useScrollX();
 
-	const [storiesData, setStoriesData] = useState<undefined | { user: IStory; stories: IStory[] }>(undefined);
-
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
-	useEffect(() => {
-		const storyServices = new StoryService();
+	const { data: storiesData, isLoading } = useQuery({
+		queryFn: async () => {
+			const storyServices = new StoryService();
 
-		(async () => {
-			setStoriesData({
+			return {
 				user: await storyServices.getUserStories(currentUserId),
 				stories: await storyServices.getAll(currentUserId),
-			});
-		})();
-	}, [currentUserId]);
+			};
+		},
+		queryKey: ['storiesData', currentUserId],
+	});
+
+	if (isLoading)
+		return (
+			<section className='flex justify-center my-10'>
+				<p>Loading Stories...</p>
+			</section>
+		);
 
 	return (
 		<section className='overflow-hidden max-w-xl mx-auto p-3 mb-5 relative min-h-[100px]'>

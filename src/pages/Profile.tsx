@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
 import { useModalPost } from '@/hooks/useModalPost';
 
 import { useUserStore } from '@/store/user';
@@ -12,21 +11,26 @@ import Tagged from '@/components/icons/Tagged';
 
 import SectionPostProfile from '@/components/SectionPostProfile';
 
-import type { ICurrentUserProfile } from '@/types/user';
-
+// TODO: Modificar para hacerlo no solo con el currentUser
 function Profile() {
-	const [data, setData] = useState<undefined | ICurrentUserProfile>(undefined);
 	const { openModal } = useModalPost();
 
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
-	useEffect(() => {
-		const userService = new UserServices();
+	const { data, isLoading } = useQuery({
+		queryFn: () => {
+			const userService = new UserServices();
+			return userService.getProfileData(currentUserId);
+		},
+		queryKey: ['currentUserProfile', currentUserId],
+	});
 
-		(async () => {
-			setData(await userService.getProfileData(currentUserId));
-		})();
-	}, [currentUserId]);
+	if (isLoading)
+		return (
+			<section className='flex justify-center my-10'>
+				<p>Loading current user data...</p>
+			</section>
+		);
 
 	if (data === undefined) return null;
 

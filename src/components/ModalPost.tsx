@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useScreenSize } from '@/hooks/useScreenSize';
 
 import { Navigate } from 'react-router-dom';
@@ -20,7 +20,6 @@ import Comment from './Comment';
 import { getTimeAgo } from '@/utilities/time';
 
 import type { IEntityID } from '@/types/entity';
-import type { IPostFullInfo } from '@/types/post';
 
 interface Props {
 	modalData: {
@@ -31,16 +30,15 @@ interface Props {
 }
 
 export default function ModalPost({ modalData, closeModal }: Props) {
-	const [modalPostData, setModalPostData] = useState<undefined | IPostFullInfo>(undefined);
 	const { width } = useScreenSize();
 
-	useEffect(() => {
-		const postService = new PostService();
-
-		(async () => {
-			setModalPostData(await postService.getInfoLargeScreen(modalData.postId as IEntityID));
-		})();
-	}, [modalData.postId]);
+	const { data: modalPostData } = useQuery({
+		queryFn: () => {
+			const postService = new PostService();
+			return postService.getInfoLargeScreen(modalData.postId as IEntityID);
+		},
+		queryKey: ['modalPostData', modalData.postId],
+	});
 
 	if (width <= 640) {
 		return <Navigate to={`/post/${modalData.postId}`} replace />;

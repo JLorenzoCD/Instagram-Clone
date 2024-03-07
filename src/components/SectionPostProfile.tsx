@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import PostService from '@/services/post';
 
 import PostSoloImage from './PostSoloImage';
 
-import type { IPostSoloImage } from '@/types/post';
 import type { IEntityID } from '@/types/entity';
 
 interface Props {
@@ -12,15 +11,20 @@ interface Props {
 	openModal: (postId: IEntityID) => void;
 }
 export default function SectionPostProfile({ userId, openModal }: Props) {
-	const [data, setData] = useState<undefined | IPostSoloImage[]>(undefined);
+	const { data, isLoading } = useQuery({
+		queryFn: () => {
+			const postService = new PostService();
+			return postService.getProfile(userId);
+		},
+		queryKey: ['postProfileData', userId],
+	});
 
-	useEffect(() => {
-		const postService = new PostService();
-
-		(async () => {
-			setData(await postService.getProfile(userId));
-		})();
-	}, [userId]);
+	if (isLoading)
+		return (
+			<section className='flex justify-center'>
+				<p>Loading Posts...</p>
+			</section>
+		);
 
 	return (
 		<section className='grid gap-1 grid-cols-3 -mx-px md:-mx-3'>

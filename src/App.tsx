@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import ModalPostProvider from './context/ModalPostProvider';
@@ -16,72 +17,76 @@ import Singup from './pages/Session/Singup';
 import PrivateRoute from './pages/RoutesType/PrivateRoute';
 import GuestRoute from './pages/RoutesType/GuestRoute';
 
+const queryClient = new QueryClient();
+
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route
-					path='/'
-					element={
-						<PrivateRoute>
-							<Layout>
-								<Home />
-							</Layout>
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path='/profile'
-					element={
-						<PrivateRoute>
-							<Layout>
-								<ModalPostProvider>
-									<Profile />
-								</ModalPostProvider>
-							</Layout>
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path='/explore'
-					element={
-						<PrivateRoute>
-							<Layout>
-								<ModalPostProvider>
-									<Explore />
-								</ModalPostProvider>
-							</Layout>
-						</PrivateRoute>
-					}
-				/>
+		<QueryClientProvider client={queryClient}>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<PrivateRoute>
+								<Layout>
+									<Home />
+								</Layout>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='/profile'
+						element={
+							<PrivateRoute>
+								<Layout>
+									<ModalPostProvider>
+										<Profile />
+									</ModalPostProvider>
+								</Layout>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='/explore'
+						element={
+							<PrivateRoute>
+								<Layout>
+									<ModalPostProvider>
+										<Explore />
+									</ModalPostProvider>
+								</Layout>
+							</PrivateRoute>
+						}
+					/>
 
-				<Route
-					path='/post/:postID'
-					element={
-						<PrivateRoute>
-							<Layout>
-								<ModalPostProvider>
-									<ShowPost />
-								</ModalPostProvider>
-							</Layout>
-						</PrivateRoute>
-					}
-				/>
+					<Route
+						path='/post/:postID'
+						element={
+							<PrivateRoute>
+								<Layout>
+									<ModalPostProvider>
+										<ShowPost />
+									</ModalPostProvider>
+								</Layout>
+							</PrivateRoute>
+						}
+					/>
 
-				<Route
-					path='/user'
-					element={
-						<GuestRoute>
-							<Session />
-						</GuestRoute>
-					}
-				>
-					<Route index element={<Login />} />
-					<Route path='login' element={<Login />} />
-					<Route path='singup' element={<Singup />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+					<Route
+						path='/user'
+						element={
+							<GuestRoute>
+								<Session />
+							</GuestRoute>
+						}
+					>
+						<Route index element={<Login />} />
+						<Route path='login' element={<Login />} />
+						<Route path='singup' element={<Singup />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	);
 }
 

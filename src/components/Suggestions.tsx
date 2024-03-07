@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/store/user';
 
 import UserServices from '@/services/user';
 
-import type { IUserSuggestion } from '@/types/user';
-
 export default function Suggestions() {
-	const [suggestionsData, setModalPostData] = useState<undefined | IUserSuggestion[]>(undefined);
-
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
-	useEffect(() => {
-		const userServices = new UserServices();
+	const { data: suggestionsData, isLoading } = useQuery({
+		queryFn: () => {
+			const userServices = new UserServices();
+			return userServices.getSuggestions(currentUserId);
+		},
+		queryKey: ['suggestionsData', currentUserId],
+	});
 
-		(async () => {
-			setModalPostData(await userServices.getSuggestions(currentUserId));
-		})();
-	}, [currentUserId]);
+	if (isLoading)
+		return (
+			<section className='flex justify-center my-20'>
+				<p>Loading suggestions...</p>
+			</section>
+		);
 
 	return (
 		<>

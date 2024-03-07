@@ -1,26 +1,19 @@
-import { useEffect, useState } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
 import { useModalPost } from '@/hooks/useModalPost';
-
 import { useUserStore } from '@/store/user';
 
 import PostService from '@/services/post';
 
 import PostSoloImage from '@/components/PostSoloImage';
 
-import type { IPostSoloImage } from '@/types/post';
-
 function Explore() {
 	const { openModal } = useModalPost();
 
-	const [matrixExploreData, setMatrizExploreData] = useState<undefined | IPostSoloImage[][]>(undefined);
-
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
-	useEffect(() => {
-		const postService = new PostService();
-
-		(async () => {
+	const { data: matrixExploreData, isLoading } = useQuery({
+		queryFn: async () => {
+			const postService = new PostService();
 			const explorePostData = await postService.getExplore(currentUserId);
 
 			const data = [];
@@ -29,9 +22,17 @@ function Explore() {
 				data.push(explorePostData.slice(i, i + COLS));
 			}
 
-			setMatrizExploreData(data);
-		})();
-	}, [currentUserId]);
+			return data;
+		},
+		queryKey: ['postExploreData', currentUserId],
+	});
+
+	if (isLoading)
+		return (
+			<section className='flex justify-center my-20'>
+				<p>Loading Posts...</p>
+			</section>
+		);
 
 	return (
 		<section>
@@ -61,14 +62,7 @@ function Explore() {
 
 								<div className='col-span-2 grid grid-cols-2 grid-rows-2 gap-1'>
 									{fila.map((post, index) => {
-										if (index)
-											return (
-												<PostSoloImage
-													key={post.id}
-													onClick={() => openModal(post.id)}
-													data={post}
-												/>
-											);
+										if (index) return <PostSoloImage key={post.id} onClick={() => openModal(post.id)} data={post} />;
 									})}
 								</div>
 							</>

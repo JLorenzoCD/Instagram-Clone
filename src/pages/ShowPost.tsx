@@ -1,26 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 import PostService from '@/services/post';
 
 import Post from '@/components/Post';
 
-import type { IPostFewInfo } from '@/types/post';
 import type { IEntityID } from '@/types/entity';
 
 function ShowPost() {
 	const { postID } = useParams();
-	const [data, setData] = useState<undefined | IPostFewInfo[]>(undefined);
 
-	useEffect(() => {
-		const postService = new PostService();
+	const { data, isLoading } = useQuery({
+		queryFn: () => {
+			const postService = new PostService();
+			return postService.getInfo(postID as IEntityID);
+		},
+		queryKey: ['postShowMobile', postID],
+	});
 
-		(async () => {
-			setData(await postService.getInfo(postID as IEntityID));
-		})();
-	}, [postID]);
-
-	if (data === undefined) return null;
+	if (isLoading)
+		return (
+			<section className='flex justify-center my-10'>
+				<p>Loading post...</p>
+			</section>
+		);
 
 	return (
 		<section className='py-4 px-2'>
