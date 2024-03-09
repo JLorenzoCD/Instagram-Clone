@@ -5,17 +5,17 @@ import { Navigate } from 'react-router-dom';
 
 import PostService from '@/services/post';
 
-import Close from './icons/Close';
-import Options from './icons/Options';
-import Heart from './icons/Heart';
-import Message from './icons/Message';
-import Share from './icons/Share';
-import SavePost from './icons/SavePost';
+import Close from '../icons/Close';
+import Options from '../icons/Options';
+import Heart from '../icons/Heart';
+import Message from '../icons/Message';
+import Share from '../icons/Share';
+import SavePost from '../icons/SavePost';
 
-import SkeletonProfile from './skeleton/Profile';
+import SkeletonProfile from '../skeleton/Profile';
 
 import Modal from './Modal';
-import Comment from './Comment';
+import Comment from '../Comment';
 
 import { getTimeAgo } from '@/utilities/time';
 
@@ -24,7 +24,7 @@ import type { IEntityID } from '@/types/entity';
 interface Props {
 	modalData: {
 		show: boolean;
-		postId: null | IEntityID;
+		postId?: IEntityID;
 	};
 	closeModal: () => void;
 }

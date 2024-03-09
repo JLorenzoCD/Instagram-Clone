@@ -1,22 +1,19 @@
-import { useState } from 'react';
+import { useModal } from '@/hooks/useModal';
 
 import { ModalOptionContext } from './ModalOptionContext';
 
-import ModalOption from '@/components/ModalOption';
+import ModalOption from '@/components/modals/ModalOption';
 
 interface Props {
 	children: JSX.Element | JSX.Element[];
 }
 
 export default function ModalOptionProvider({ children }: Props) {
-	const [show, setShow] = useState(false);
-
-	const openModal = () => setShow(true);
-	const closeModal = () => setShow(false);
+	const { modalData, openModal, closeModal } = useModal<undefined>();
 
 	return (
-		<ModalOptionContext.Provider value={{ show, openModal, closeModal }}>
-			{show && <ModalOption closeModal={closeModal} show={show} />}
+		<ModalOptionContext.Provider value={{ modalData, openModal, closeModal }}>
+			{modalData.show && <ModalOption closeModal={closeModal} show={modalData.show} />}
 			{children}
 		</ModalOptionContext.Provider>
 	);

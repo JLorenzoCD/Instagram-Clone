@@ -5,7 +5,7 @@ import type { IEntityID } from '@/types/entity';
 interface IModalPostContext {
 	modalData: {
 		show: boolean;
-		postId: IEntityID | null;
+		postId?: IEntityID;
 	};
 	openModal: (postId: IEntityID) => void;
 	closeModal: () => void;

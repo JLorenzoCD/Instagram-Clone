@@ -1,5 +1,6 @@
 import { useUserStore } from '@/store/user';
-import Close from './icons/Close';
+
+import Close from '../icons/Close';
 
 import Modal from './Modal';
 

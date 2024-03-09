@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 interface IModalCreatePostContext {
-	show: boolean;
+	modalData: { show: boolean };
 	openModal: () => void;
 	closeModal: () => void;
 }

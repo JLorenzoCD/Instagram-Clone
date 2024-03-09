@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Close from './icons/Close';
+import Close from '../icons/Close';
 
 import Modal from './Modal';
 

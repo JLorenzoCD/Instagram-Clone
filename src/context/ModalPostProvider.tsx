@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useModal } from '@/hooks/useModal';
 
 import { ModalPostContext } from './ModalPostContext';
 
-import ModalPost from '@/components/ModalPost';
+import ModalPost from '@/components/modals/ModalPost';
 
 import type { IEntityID } from '@/types/entity';
 
@@ -11,13 +11,7 @@ interface Props {
 }
 
 export default function ModalPostProvider({ children }: Props) {
-	const [modalData, setModalData] = useState<{
-		show: boolean;
-		postId: null | IEntityID;
-	}>({ show: false, postId: null });
-
-	const openModal = (postId: IEntityID) => setModalData({ show: true, postId });
-	const closeModal = () => setModalData({ show: false, postId: null });
+	const { modalData, openModal, closeModal } = useModal<IEntityID>();
 
 	return (
 		<ModalPostContext.Provider value={{ modalData, openModal, closeModal }}>
