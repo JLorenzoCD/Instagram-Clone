@@ -11,4 +11,6 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		},
 	},
+
+	base: 'https://jupplcd.github.io/Instagram-Clone/',
 });
