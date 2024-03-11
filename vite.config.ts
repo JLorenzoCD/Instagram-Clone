@@ -12,5 +12,5 @@ export default defineConfig({
 		},
 	},
 
-	base: 'https://jupplcd.github.io/Instagram-Clone/',
+	base: '/Instagram-Clone/',
 });
