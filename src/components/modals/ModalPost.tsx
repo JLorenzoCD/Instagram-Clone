@@ -24,7 +24,7 @@ import type { IEntityID } from '@/types/entity';
 interface Props {
 	modalData: {
 		show: boolean;
-		postId?: IEntityID;
+		data?: IEntityID;
 	};
 	closeModal: () => void;
 }
@@ -35,13 +35,13 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 	const { data: modalPostData, isLoading } = useQuery({
 		queryFn: () => {
 			const postService = new PostService();
-			return postService.getInfoLargeScreen(modalData.postId as IEntityID);
+			return postService.getInfoLargeScreen(modalData.data as IEntityID);
 		},
-		queryKey: ['modalPostData', modalData.postId],
+		queryKey: ['modalPostData', modalData.data],
 	});
 
 	if (width <= 640) {
-		return <Navigate to={`/post/${modalData.postId}`} replace />;
+		return <Navigate to={`/post/${modalData.data}`} replace />;
 	}
 
 	if (isLoading)

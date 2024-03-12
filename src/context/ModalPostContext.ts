@@ -5,9 +5,9 @@ import type { IEntityID } from '@/types/entity';
 interface IModalPostContext {
 	modalData: {
 		show: boolean;
-		postId?: IEntityID;
+		data?: IEntityID;
 	};
-	openModal: (postId: IEntityID) => void;
+	openModal: (data: IEntityID) => void;
 	closeModal: () => void;
 }
 

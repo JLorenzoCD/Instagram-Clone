@@ -64,9 +64,7 @@ function App() {
 						element={
 							<PrivateRoute>
 								<Layout>
-									<ModalPostProvider>
-										<ShowPost />
-									</ModalPostProvider>
+									<ShowPost />
 								</Layout>
 							</PrivateRoute>
 						}
