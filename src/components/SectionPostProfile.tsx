@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import PostService from '@/services/post';
 
 import PostSoloImage from './PostSoloImage';
+import Spinner from './Spinner';
 
 import type { IEntityID } from '@/types/entity';
 
@@ -22,7 +23,7 @@ export default function SectionPostProfile({ userId, openModal }: Props) {
 	if (isLoading)
 		return (
 			<section className='flex justify-center'>
-				<p>Loading Posts...</p>
+				<Spinner />
 			</section>
 		);
 

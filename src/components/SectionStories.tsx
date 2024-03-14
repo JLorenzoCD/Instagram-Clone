@@ -6,6 +6,7 @@ import { useScrollX } from '@/hooks/useScrollX';
 import StoryService from '@/services/story';
 
 import Storie from './Storie';
+import Spinner from './Spinner';
 
 export default function SectionStories() {
 	const { onScroll, scrollLeft, scrollRight, storiesRef, showLeft, showRight } = useScrollX();
@@ -27,7 +28,7 @@ export default function SectionStories() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center my-10'>
-				<p>Loading Stories...</p>
+				<Spinner />
 			</section>
 		);
 

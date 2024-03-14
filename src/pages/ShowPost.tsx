@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import PostService from '@/services/post';
 
 import Post from '@/components/Post';
+import Spinner from '@/components/Spinner';
 
 import type { IEntityID } from '@/types/entity';
 
@@ -21,7 +22,7 @@ function ShowPost() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center my-10'>
-				<p>Loading post...</p>
+				<Spinner />
 			</section>
 		);
 

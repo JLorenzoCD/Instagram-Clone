@@ -4,6 +4,7 @@ import { useUserStore } from '@/store/user';
 import PostService from '@/services/post';
 
 import Post from './Post';
+import Spinner from './Spinner';
 
 export default function SectionPostHome() {
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
@@ -19,7 +20,7 @@ export default function SectionPostHome() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center'>
-				<p>Loading Posts...</p>
+				<Spinner />
 			</section>
 		);
 

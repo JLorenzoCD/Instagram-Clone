@@ -16,6 +16,7 @@ import SkeletonProfile from '../skeleton/Profile';
 
 import Modal from './Modal';
 import Comment from '../Comment';
+import Spinner from '../Spinner';
 
 import { getTimeAgo } from '@/utilities/time';
 
@@ -47,7 +48,7 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 	if (isLoading)
 		return (
 			<Modal portalID='portal-modal' show={modalData.show} onClick={closeModal}>
-				<p>Loading...</p>
+				<Spinner />
 			</Modal>
 		);
 

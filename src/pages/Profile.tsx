@@ -10,6 +10,7 @@ import Reels from '@/components/icons/Reels';
 import Tagged from '@/components/icons/Tagged';
 
 import SectionPostProfile from '@/components/SectionPostProfile';
+import Spinner from '@/components/Spinner';
 
 // TODO: Modificar para hacerlo no solo con el currentUser
 function Profile() {
@@ -28,7 +29,7 @@ function Profile() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center my-10'>
-				<p>Loading current user data...</p>
+				<Spinner />
 			</section>
 		);
 

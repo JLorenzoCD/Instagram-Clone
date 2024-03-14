@@ -3,6 +3,8 @@ import { useUserStore } from '@/store/user';
 
 import UserServices from '@/services/user';
 
+import Spinner from './Spinner';
+
 export default function Suggestions() {
 	const currentUserId = useUserStore((state) => state.currentUser!.id);
 
@@ -17,7 +19,7 @@ export default function Suggestions() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center my-20'>
-				<p>Loading suggestions...</p>
+				<Spinner />
 			</section>
 		);
 

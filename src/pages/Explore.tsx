@@ -5,6 +5,7 @@ import { useUserStore } from '@/store/user';
 import PostService from '@/services/post';
 
 import PostSoloImage from '@/components/PostSoloImage';
+import Spinner from '@/components/Spinner';
 
 function Explore() {
 	const { openModal } = useModalPost();
@@ -30,7 +31,7 @@ function Explore() {
 	if (isLoading)
 		return (
 			<section className='flex justify-center my-20'>
-				<p>Loading Posts...</p>
+				<Spinner />
 			</section>
 		);
 
