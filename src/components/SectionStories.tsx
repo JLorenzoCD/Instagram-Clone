@@ -7,6 +7,7 @@ import StoryService from '@/services/story';
 
 import Storie from './Storie';
 import Spinner from './Spinner';
+import Arrow from './icons/Arrow';
 
 export default function SectionStories() {
 	const { onScroll, scrollLeft, scrollRight, storiesRef, showLeft, showRight } = useScrollX();
@@ -46,17 +47,17 @@ export default function SectionStories() {
 			{showLeft && (
 				<button
 					onClick={scrollLeft}
-					className='text-black align-top inline-block bg-white rounded-full size-6 cursor-pointer filter drop-shadow-lg absolute m-auto left-2 top-0 bottom-0 -translate-y-1/4'
+					className='align-top cursor-pointer filter drop-shadow-lg absolute m-auto bottom-1/2 translate-y-1/4 left-3 '
 				>
-					〈
+					<Arrow fill='white' className='size-6' />
 				</button>
 			)}
 			{showRight && (
 				<button
 					onClick={scrollRight}
-					className='text-black align-top inline-block bg-white rounded-full size-6 cursor-pointer filter drop-shadow-lg absolute m-auto right-2 top-0 bottom-0 -translate-y-1/4'
+					className='align-top cursor-pointer filter drop-shadow-lg absolute m-auto bottom-1/2 translate-y-1/4 right-3'
 				>
-					〉
+					<Arrow fill='white' className='rotate-180 size-6' />
 				</button>
 			)}
 		</section>
