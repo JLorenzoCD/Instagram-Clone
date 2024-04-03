@@ -5,7 +5,7 @@ import { currentUser, currentUserProfile, userSuggestions } from '@/data/user';
 import type { IEntityID } from '@/types/entity';
 import type { IUserLogin, IUserSingup } from '@/types/user';
 
-export default class UserModel {
+export default class UserService {
 	async login(loginData: IUserLogin) {
 		await new Promise((resolve) => setTimeout(resolve, LOCAL_PROMISE_WAIT_TIME));
 		console.log({ loginData });

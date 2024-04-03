@@ -1,29 +1,29 @@
-import PostModel from '@/models/local/post';
+import PostService from '@/services/local/post';
 
 import type { IPostToStore, IPostToUpdate } from '@/types/post';
 import type { IEntityID } from '@/types/entity';
 
-export default class PostService {
-	postModel = new PostModel();
+export default class PostController {
+	postService = new PostService();
 
 	async getHome(currentUserId: IEntityID) {
-		return await this.postModel.getHome(currentUserId);
+		return await this.postService.getHome(currentUserId);
 	}
 
 	async getProfile(userId: IEntityID) {
-		return await this.postModel.getProfile(userId);
+		return await this.postService.getProfile(userId);
 	}
 
 	async getExplore(currentUserId: IEntityID) {
-		return await this.postModel.getExplore(currentUserId);
+		return await this.postService.getExplore(currentUserId);
 	}
 
 	async getInfoLargeScreen(postId: IEntityID) {
-		return await this.postModel.getInfoLargeScreen(postId);
+		return await this.postService.getInfoLargeScreen(postId);
 	}
 
 	async getInfo(postId: IEntityID) {
-		return await this.postModel.getInfo(postId);
+		return await this.postService.getInfo(postId);
 	}
 
 	async store(data: IPostToStore) {

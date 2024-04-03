@@ -4,7 +4,7 @@ import { explorePostData, modalPostData, postsData, profilePostData } from '@/da
 
 import type { IEntityID } from '@/types/entity';
 
-export default class PostModel {
+export default class PostService {
 	async getHome(currentUserId: IEntityID) {
 		await new Promise((resolve) => setTimeout(resolve, LOCAL_PROMISE_WAIT_TIME));
 		console.log(`Obteninendo los post para la pagina de inicio del usuario con id: ${currentUserId}`);

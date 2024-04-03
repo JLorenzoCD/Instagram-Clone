@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/store/user';
 
-import UserServices from '@/services/user';
+import UserController from '@/controllers/user';
 
 import Spinner from './Spinner';
 
@@ -10,8 +10,8 @@ export default function Suggestions() {
 
 	const { data: suggestionsData, isLoading } = useQuery({
 		queryFn: () => {
-			const userServices = new UserServices();
-			return userServices.getSuggestions(currentUserId);
+			const userController = new UserController();
+			return userController.getSuggestions(currentUserId);
 		},
 		queryKey: ['suggestionsData', currentUserId],
 	});

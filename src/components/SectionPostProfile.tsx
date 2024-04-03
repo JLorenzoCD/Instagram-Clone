@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import PostService from '@/services/post';
+import PostController from '@/controllers/post';
 
 import PostSoloImage from './PostSoloImage';
 import Spinner from './Spinner';
@@ -14,8 +14,8 @@ interface Props {
 export default function SectionPostProfile({ userId, openModal }: Props) {
 	const { data, isLoading } = useQuery({
 		queryFn: () => {
-			const postService = new PostService();
-			return postService.getProfile(userId);
+			const postController = new PostController();
+			return postController.getProfile(userId);
 		},
 		queryKey: ['postProfileData', userId],
 	});

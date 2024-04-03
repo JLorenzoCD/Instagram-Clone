@@ -3,7 +3,7 @@ import { useScreenSize } from '@/hooks/useScreenSize';
 
 import { Navigate } from 'react-router-dom';
 
-import PostService from '@/services/post';
+import PostController from '@/controllers/post';
 
 import Close from '../icons/Close';
 import Options from '../icons/Options';
@@ -35,8 +35,8 @@ export default function ModalPost({ modalData, closeModal }: Props) {
 
 	const { data: modalPostData, isLoading } = useQuery({
 		queryFn: () => {
-			const postService = new PostService();
-			return postService.getInfoLargeScreen(modalData.data as IEntityID);
+			const postController = new PostController();
+			return postController.getInfoLargeScreen(modalData.data as IEntityID);
 		},
 		queryKey: ['modalPostData', modalData.data],
 	});

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import PostService from '@/services/post';
+import PostController from '@/controllers/post';
 
 import Post from '@/components/Post';
 import Spinner from '@/components/Spinner';
@@ -13,8 +13,8 @@ function ShowPost() {
 
 	const { data, isLoading } = useQuery({
 		queryFn: () => {
-			const postService = new PostService();
-			return postService.getInfo(postID as IEntityID);
+			const postController = new PostController();
+			return postController.getInfo(postID as IEntityID);
 		},
 		queryKey: ['postShowMobile', postID],
 	});

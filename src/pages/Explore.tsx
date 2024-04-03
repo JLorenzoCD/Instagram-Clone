@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useModalPost } from '@/hooks/useModalPost';
 import { useUserStore } from '@/store/user';
 
-import PostService from '@/services/post';
+import PostController from '@/controllers/post';
 
 import PostSoloImage from '@/components/PostSoloImage';
 import Spinner from '@/components/Spinner';
@@ -14,8 +14,8 @@ function Explore() {
 
 	const { data: matrixExploreData, isLoading } = useQuery({
 		queryFn: async () => {
-			const postService = new PostService();
-			const explorePostData = await postService.getExplore(currentUserId);
+			const postController = new PostController();
+			const explorePostData = await postController.getExplore(currentUserId);
 
 			const data = [];
 			const COLS = 5;

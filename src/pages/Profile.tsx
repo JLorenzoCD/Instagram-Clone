@@ -3,7 +3,7 @@ import { useModalPost } from '@/hooks/useModalPost';
 
 import { useUserStore } from '@/store/user';
 
-import UserServices from '@/services/user';
+import UserController from '@/controllers/user';
 
 import Posts from '@/components/icons/Posts';
 import Reels from '@/components/icons/Reels';
@@ -20,8 +20,8 @@ function Profile() {
 
 	const { data, isLoading } = useQuery({
 		queryFn: () => {
-			const userService = new UserServices();
-			return userService.getProfileData(currentUserId);
+			const userController = new UserController();
+			return userController.getProfileData(currentUserId);
 		},
 		queryKey: ['currentUserProfile', currentUserId],
 	});

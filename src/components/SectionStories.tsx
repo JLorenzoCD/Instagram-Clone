@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useUserStore } from '@/store/user';
 import { useScrollX } from '@/hooks/useScrollX';
 
-import StoryService from '@/services/story';
+import StoryController from '@/controllers/story';
 
 import Storie from './Storie';
 import Spinner from './Spinner';
@@ -16,11 +16,11 @@ export default function SectionStories() {
 
 	const { data: storiesData, isLoading } = useQuery({
 		queryFn: async () => {
-			const storyServices = new StoryService();
+			const storyController = new StoryController();
 
 			return {
-				user: await storyServices.getUserStories(currentUserId),
-				stories: await storyServices.getAll(currentUserId),
+				user: await storyController.getUserStories(currentUserId),
+				stories: await storyController.getAll(currentUserId),
 			};
 		},
 		queryKey: ['storiesData', currentUserId],
