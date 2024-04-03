@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Explore from './pages/Explore';
 import ShowPost from './pages/ShowPost';
+import NotFound from './pages/NotFound';
 
 import Session from './pages/Session';
 import Login from './pages/Session/Login';
@@ -28,47 +29,30 @@ function App() {
 						path='/'
 						element={
 							<PrivateRoute>
-								<Layout>
-									<Home />
-								</Layout>
+								<Layout />
 							</PrivateRoute>
 						}
-					/>
-					<Route
-						path='/profile'
-						element={
-							<PrivateRoute>
-								<Layout>
-									<ModalPostProvider>
-										<Profile />
-									</ModalPostProvider>
-								</Layout>
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path='/explore'
-						element={
-							<PrivateRoute>
-								<Layout>
-									<ModalPostProvider>
-										<Explore />
-									</ModalPostProvider>
-								</Layout>
-							</PrivateRoute>
-						}
-					/>
+					>
+						<Route index element={<Home />} />
+						<Route
+							path='/profile'
+							element={
+								<ModalPostProvider>
+									<Profile />
+								</ModalPostProvider>
+							}
+						/>
+						<Route
+							path='/explore'
+							element={
+								<ModalPostProvider>
+									<Explore />
+								</ModalPostProvider>
+							}
+						/>
 
-					<Route
-						path='/post/:postID'
-						element={
-							<PrivateRoute>
-								<Layout>
-									<ShowPost />
-								</Layout>
-							</PrivateRoute>
-						}
-					/>
+						<Route path='/post/:postID' element={<ShowPost />} />
+					</Route>
 
 					<Route
 						path='/user'
@@ -82,6 +66,8 @@ function App() {
 						<Route path='login' element={<Login />} />
 						<Route path='singup' element={<Singup />} />
 					</Route>
+
+					<Route path='/*' element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>
 		</QueryClientProvider>
