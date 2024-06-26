@@ -1,6 +1,6 @@
 # Instagram Clone with React + Typescript + Tailwind CSS
 
-URL: https://jupplcd.github.io/Instagram-Clone/
+URL: https://jlorenzocd.github.io/Instagram-Clone/
 
 ## TODO
 
